@@ -22,8 +22,23 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello World!' });
+app.get('/api/products', async (req, res, next) => {
+  try {
+    const sql = `
+      SELECT "productId",
+             "name",
+             "price",
+             "description",
+             "minPlayers",
+             "maxPlayers",
+             "thumbUrl"
+        FROM "products"
+    `;
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(errorMiddleware);

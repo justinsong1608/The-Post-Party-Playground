@@ -6,7 +6,7 @@ drop schema "public" cascade;
 
 create schema "public";
 
-CREATE TABLE "public"."product" (
+CREATE TABLE "public"."products" (
 	"productId"          serial,
 	"name"               TEXT        NOT NULL,
 	"price"              DECIMAL     NOT NULL,
@@ -114,10 +114,10 @@ CREATE TABLE "public"."orderContents" (
 
 
 ALTER TABLE "cart" ADD CONSTRAINT "cart_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
-ALTER TABLE "cart" ADD CONSTRAINT "cart_fk1" FOREIGN KEY ("productId") REFERENCES "product"("productId");
+ALTER TABLE "cart" ADD CONSTRAINT "cart_fk1" FOREIGN KEY ("productId") REFERENCES "products"("productId");
 
 ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
-ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk1" FOREIGN KEY ("productId") REFERENCES "product"("productId");
+ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk1" FOREIGN KEY ("productId") REFERENCES "products"("productId");
 
 
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
