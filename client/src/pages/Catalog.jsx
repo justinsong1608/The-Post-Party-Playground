@@ -30,7 +30,7 @@ export default function Catalog() {
   return (
     <div className='container'>
       <br />
-      <h1>Catalog</h1>
+      <h1 className='butcherman-font'>Catalog</h1>
       <br />
       <div className='row'>
         {products?.map((product) => (
@@ -47,11 +47,11 @@ function Product({ product }) {
   const { productId, name, price, minPlayers, maxPlayers, thumbUrl } = product;
   return (
     <Link to={`/details/${productId}`} className='product text-dark card mb-4 shadow-sm text-decoration-none'>
-      <img src={thumbUrl} classname='image card-img-top' alt={name} />
+      <img src={thumbUrl} className='image card-img-top' alt={name} />
       <div className='card-body'>
-        <h5 className='card-title'>{name}</h5>
-        <p className="card-text text-secondary">${price}</p>
-        <p className="description card-text">Players: {minPlayers} - {maxPlayers}</p>
+        <h3 className='card-title'>{name}</h3>
+        <h5 className="card-text text-secondary">${price}</h5>
+        <h6 className="description card-text">Players: {minPlayers} - {maxPlayers}</h6>
       </div>
     </Link>
   )

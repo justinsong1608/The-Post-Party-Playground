@@ -10,3 +10,8 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+.butcherman-font {
+font-family: 'Butcherman', cursive;
+color: red;
+}
