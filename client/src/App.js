@@ -8,6 +8,7 @@ import Catalog from './pages/Catalog.jsx';
 import Account from './pages/Account.jsx';
 import Wishlist from './pages/Wishlist.jsx';
 import Cart from './pages/Cart.jsx';
+import ProductDeatils from './pages/ProductDetails';
 
 function App() {
   // const [serverData, setServerData] = useState("");
@@ -41,6 +42,7 @@ function App() {
         <Route path='account' element={<Account />} />
         <Route path='wishlist' element={<Wishlist />} />
         <Route path='cart' element={<Cart />} />
+        <Route path='details/:productId' element={<ProductDeatils />} />
       </Route>
     </Routes>
   )

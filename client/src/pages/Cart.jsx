@@ -1,4 +1,4 @@
 import './Cart.css';
 export default function Cart() {
-  return <div></div>
+  return <div>Cart</div>
 }
