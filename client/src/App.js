@@ -3,11 +3,11 @@
 import './App.css';
 import Header from './components/Header';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Catalog from './pages/Catalog';
-import Account from './pages/Account';
-import Wishlist from './pages/Wishlist';
-import Cart from './pages/Cart';
+import Home from './pages/Home.jsx';
+import Catalog from './pages/Catalog.jsx';
+import Account from './pages/Account.jsx';
+import Wishlist from './pages/Wishlist.jsx';
+import Cart from './pages/Cart.jsx';
 
 function App() {
   // const [serverData, setServerData] = useState("");
