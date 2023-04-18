@@ -1,31 +1,49 @@
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+// import { useEffect, useState } from 'react';
+// import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Catalog from './pages/Catalog';
+import Account from './pages/Account';
+import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
 
 function App() {
-  const [serverData, setServerData] = useState("");
+  // const [serverData, setServerData] = useState("");
 
-  useEffect(() => {
-    async function getServerData() {
-      const resp = await fetch('/api/hello');
-      const data = await resp.json();
+  // useEffect(() => {
+  //   async function getServerData() {
+  //     const resp = await fetch('/api/hello');
+  //     const data = await resp.json();
 
-      console.log('Data from server:', data);
+  //     console.log('Data from server:', data);
 
-      setServerData(data.message);
-    }
+  //     setServerData(data.message);
+  //   }
 
-    getServerData();
-  }, []);
+  //   getServerData();
+  // }, []);
 
+  // return (
+  //   <div className="App">
+  //     <header className="App-header">
+  //       <img src={logo} className="App-logo" alt="logo" />
+  //       <h1>{serverData}</h1>
+  //     </header>
+  //   </div>
+  // );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{serverData}</h1>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route path='/' element={<Header />}>
+        <Route index element={<Home />} />
+        <Route path='catalog' element={<Catalog />} />
+        <Route path='account' element={<Account />} />
+        <Route path='wishlist' element={<Wishlist />} />
+        <Route path='cart' element={<Cart />} />
+      </Route>
+    </Routes>
+  )
 }
 
 export default App;
