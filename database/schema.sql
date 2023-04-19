@@ -112,7 +112,6 @@ CREATE TABLE "public"."orderContents" (
 CREATE TABLE "public"."featuredProducts" (
 	"featuredId"          serial,
 	"productId"          int         NOT NULL,
-	"thumbUrl"           text        NOT NULL,
 	CONSTRAINT "featuredProducts_pk" PRIMARY KEY ("featuredId")
 ) WITH (
   OIDS=FALSE

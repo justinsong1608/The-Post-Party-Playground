@@ -18,3 +18,11 @@ INSERT INTO "products" (
   ('Scrabble', 19.92, 'The classic word-on-word showdown. Use your letters to score points and challenge your family and friends. A double or triple letter or word space will let you earn big points. It''s your word against theirs!', 2, 4, 'https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1599599554926', 'https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1599599554926', 'Hasbro', 'Alfred Mosher Butts'),
   ('Unstable Unicorns', 14.49, 'A strategic card game that will destroy your friendships...but in a good way. One of Kickstarter''s Top 50 Most Backed Projects of all time! Build a Unicorn Army. Betray your friends. Unicorns are your friends now.', 2, 8, 'https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549', 'https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1541531739549', 'Breaking Games', 'Ramy Badie'),
   ('Codenames', 12.81, 'The two rival spymasters know the secret identities of 25 agents. Their teammates know the agents only by their CODENAMES. The teams compete to see who can make contact with all of their agents first. Spymasters give one-word clues that can point to multiple words on the board. Their teammates try to guess words of the right color while avoiding those that belong to the opposing team. And everyone wants to avoid the assassin. Codenames: win or lose, it''s fun to figure out the clues.', 2, 8, 'https://s3-us-west-1.amazonaws.com/5cc.images/games/userfiles/1679240870315-codenames_masked.png', 'https://s3-us-west-1.amazonaws.com/5cc.images/games/userfiles/1679240870315-codenames_masked.png', 'Czech Games Edition', 'Vlaada Chvátil');
+
+
+INSERT INTO "featuredProducts" ("productId")
+  VALUES (1),
+         (2),
+         (3),
+         (4),
+         (5);

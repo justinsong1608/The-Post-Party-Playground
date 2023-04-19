@@ -23,10 +23,7 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-// app.get('/api/hello', (req, res) => {
-//   res.json({ message: 'Hello World!' });
-// });
-
+// Gets the information for catalog page //
 app.get('/api/products', async (req, res, next) => {
   try {
     const sql = `
@@ -38,6 +35,22 @@ app.get('/api/products', async (req, res, next) => {
              "maxPlayers",
              "thumbUrl"
         FROM "products"
+    `;
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Gets the fetured products for carousel //
+app.get('/api/featuredProducts', async (req, res, next) => {
+  try {
+    const sql = `
+      SELECT "p"."thumbUrl" as "img",
+             "f"."featuredId" as "featuredId"
+        FROM "products" as "p"
+        JOIN "featuredProducts" as "f" USING ("productId")
     `;
     const result = await db.query(sql);
     res.json(result.rows);
