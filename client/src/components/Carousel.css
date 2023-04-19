@@ -1,4 +1,4 @@
-img:hover {
+.image-carousel:hover {
   transform: scale(1.1);
 }
 
@@ -16,7 +16,7 @@ img:hover {
   height: 5rem;
 }
 
-.image {
+.image-carousel {
   background-color: white;
   border-radius: 2rem;
   width: 80%;

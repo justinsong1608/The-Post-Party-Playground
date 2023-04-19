@@ -50,7 +50,7 @@ export default function Carousel() {
       <h2 className="featured-products">Featured Products</h2>
       <div className="carousel-container">
         <Button onShow={handleClickPre}><AiOutlineLeft size={50} className="red" /></Button>
-        <img src={products[currentIndex].img} alt={products[currentIndex].name} className="image mx-0" />
+        <img src={products[currentIndex].img} alt={products[currentIndex].name} className="image-carousel mx-0" />
         <Button onShow={handleClickNext}><AiOutlineRight size={50} className="red" /></Button>
       </div>
       <div className="carousel-container">
