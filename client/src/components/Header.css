@@ -2,6 +2,15 @@
   background-color: #E2F3FF;
 }
 
+.butcherman-title {
+  font-size: 1.5rem;
+}
+
+.butcherman-link {
+  font-family: 'Butcherman', cursive;
+  font-size: .9rem;
+}
+
 .butcherman-1 {
   font-family: 'Butcherman', cursive;
   color: #FF0000;

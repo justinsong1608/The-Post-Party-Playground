@@ -33,6 +33,7 @@ app.get('/api/products', async (req, res, next) => {
       SELECT "productId",
              "name",
              "price",
+             "description",
              "minPlayers",
              "maxPlayers",
              "thumbUrl"
