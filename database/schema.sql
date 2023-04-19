@@ -109,6 +109,15 @@ CREATE TABLE "public"."orderContents" (
   OIDS=FALSE
 );
 
+CREATE TABLE "public"."featuredProducts" (
+	"featuredId"          serial,
+	"productId"          int         NOT NULL,
+	"thumbUrl"           text        NOT NULL,
+	CONSTRAINT "featuredProducts_pk" PRIMARY KEY ("featuredId")
+) WITH (
+  OIDS=FALSE
+);
+
 
 
 
@@ -123,3 +132,5 @@ ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk1" FOREIGN KEY ("productId") R
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
 
 ALTER TABLE "orderContents" ADD CONSTRAINT "orderContents_fk0" FOREIGN KEY ("orderId") REFERENCES "orders"("orderId");
+
+ALTER TABLE "featuredProducts" ADD CONSTRAINT "featuredProducts_fk0" FOREIGN KEY ("productId") REFERENCES "products"("productId");
