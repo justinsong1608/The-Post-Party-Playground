@@ -48,6 +48,7 @@ app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
       SELECT "p"."thumbUrl" as "img",
+             "p"."name" as "name",
              "f"."featuredId" as "featuredId"
         FROM "products" as "p"
         JOIN "featuredProducts" as "f" USING ("productId")

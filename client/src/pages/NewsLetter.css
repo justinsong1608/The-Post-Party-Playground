@@ -1,0 +1,10 @@
+.input {
+  border-style: none;
+  border-radius: .5rem;
+  text-align: center;
+  width: 70%;
+}
+
+.center {
+  justify-content: center;
+}
