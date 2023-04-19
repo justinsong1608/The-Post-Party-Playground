@@ -9,6 +9,7 @@ import Account from './pages/Account.jsx';
 import Wishlist from './pages/Wishlist.jsx';
 import Cart from './pages/Cart.jsx';
 import ProductDeatils from './pages/ProductDetails';
+import Footer from './components/Footer';
 
 function App() {
   // const [serverData, setServerData] = useState("");
@@ -35,16 +36,19 @@ function App() {
   //   </div>
   // );
   return (
-    <Routes>
-      <Route path='/' element={<Header />}>
-        <Route index element={<Home />} />
-        <Route path='catalog' element={<Catalog />} />
-        <Route path='account' element={<Account />} />
-        <Route path='wishlist' element={<Wishlist />} />
-        <Route path='cart' element={<Cart />} />
-        <Route path='details/:productId' element={<ProductDeatils />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/' element={<Header />}>
+          <Route index element={<Home />} />
+          <Route path='catalog' element={<Catalog />} />
+          <Route path='account' element={<Account />} />
+          <Route path='wishlist' element={<Wishlist />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='details/:productId' element={<ProductDeatils />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </>
   )
 }
 
