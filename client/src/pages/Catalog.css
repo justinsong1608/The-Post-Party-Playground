@@ -2,8 +2,7 @@ body {
   background-image: url(../../public/clouds.jpeg);
 }
 
-img {
-  float: left;
+.catalog-img {
   width: 20rem;
   height: 20rem;
   object-fit: contain;

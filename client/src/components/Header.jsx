@@ -6,41 +6,48 @@ import { AiFillHeart } from 'react-icons/ai';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { CgGames } from 'react-icons/cg';
 import colorTitle from './ColorTitle';
+import { useState } from 'react';
 
 export default function Header() {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  function handleLinkClick() {
+    setIsCollapsed(true);
+  }
+
   return (
     <>
-      <nav className="navbar navbar-expand-xl blue">
+      <nav className="navbar navbar-expand-xl blue top-overlay">
         <div className="container-fluid">
-          <Link className="navbar-brand butcherman-title mx-auto" to='/'>{colorTitle('The Post Party Playground')}</Link>
+          <Link className="navbar-brand butcherman-title mx-auto" to='/' onClick={handleLinkClick}>{colorTitle('The Post Party Playground')}</Link>
           <div className='mx-auto px-3'>
             <SearchBar />
           </div>
-          <button className="navbar-toggler order-first border-0 btn-sm px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={{ fontSize: '1.2rem' }}>
+          <button className="navbar-toggler order-first border-0 btn-sm px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={{ fontSize: '1.2rem' }} onClick={() => setIsCollapsed(!isCollapsed)}>
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div id="navbarSupportedContent" className={`collapse navbar-collapse ${isCollapsed ? 'hide' : 'show'}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to='/catalog' className="nav-link text-nowrap">
+                <Link to='/catalog' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <CgGames size={33} />
                   <span className="d-md-inline ms-2 fw-semibold butcherman-link">Catalog</span>
                   </Link>
               </li>
               <li className="nav-item">
-                <Link to='/account' className="nav-link text-nowrap">
+                <Link to='/account' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <FaUserAstronaut size={33} />
                   <span className="d-md-inline ms-2 fw-semibold butcherman-link">Your Account</span>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to='/wishlist' className="nav-link text-nowrap">
+                <Link to='/wishlist' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <AiFillHeart size={33} style={{color: 'red'}}/>
                   <span className="d-md-inline ms-2 fw-semibold butcherman-link">Wishlist</span>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to='/cart' className="nav-link text-nowrap">
+                <Link to='/cart' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <HiOutlineShoppingCart size={33} />
                   <span className="d-md-inline ms-2 fw-semibold butcherman-link">Your Cart</span>
                 </Link>
@@ -49,6 +56,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
+      {isCollapsed ? null : <div className="overlay" onClick={handleLinkClick}></div>}
       <Outlet />
     </>
   );

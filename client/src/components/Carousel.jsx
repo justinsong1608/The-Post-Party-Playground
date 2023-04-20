@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { AiOutlineLeft, AiOutlineRight, AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { RiGamepadFill, RiGamepadLine } from 'react-icons/ri';
 import './Carousel.css';
+import { Link } from 'react-router-dom';
 
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,9 +59,13 @@ export default function Carousel() {
     <div>
       <h2 className="featured-products">Featured Products</h2>
       <div className="carousel-container">
-        <Button onShow={handleClickPre}><AiOutlineLeft size={50} className="red" /></Button>
-        <img src={products[currentIndex].img} alt={products[currentIndex].name} className="image-carousel mx-0" />
-        <Button onShow={handleClickNext}><AiOutlineRight size={50} className="red" /></Button>
+        <Button onShow={handleClickPre}><AiOutlineLeft size={40} className="red" /></Button>
+        <div className="d-flex justify-content-center background-carousel">
+          <Link to={`/details/${products[currentIndex].productId}`}>
+            <img src={products[currentIndex].img} alt={products[currentIndex].name} className="img-carousel"/>
+          </Link>
+        </div>
+        <Button onShow={handleClickNext}><AiOutlineRight size={40} className="red" /></Button>
       </div>
       <div className="carousel-container">
         <Buttons data={products} currentIndex={currentIndex} onShow={handleClickDot} className="mx-sm-0"/>
@@ -77,7 +83,7 @@ function Buttons({ data, onShow, currentIndex }) {
     <Button
       key={index}
       onShow={() => onShow(index)}>
-      {index === currentIndex ? <AiFillStar size={30} className="red" /> : <AiOutlineStar size={30} className="red" />}
+      {index === currentIndex ? <RiGamepadFill size={30} className="red" /> : <RiGamepadLine size={30} className="red" />}
       </Button>
 
   ));
