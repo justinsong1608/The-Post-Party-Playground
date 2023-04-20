@@ -65,7 +65,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-lg-6">
-          <div className="col-lg-6 product-detail-background p-3 mx-auto mt-4">
+          <div className="col-lg-6 product-detail-background p-3 mx-auto mt-1">
             <h1>{name}</h1>
             <div className="red">
               <RiStarSLine size={30} /> <RiStarSLine size={30} /> <RiStarSLine size={30} /> <RiStarSLine size={30} /> <RiStarSLine size={30} />
