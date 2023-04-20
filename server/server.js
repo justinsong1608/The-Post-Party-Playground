@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
 import pg from 'pg';
+import ClientError from './lib/client-error.js';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -54,6 +55,34 @@ app.get('/api/featuredProducts', async (req, res, next) => {
     `;
     const result = await db.query(sql);
     res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/products/:productId', async (req, res, next) => {
+  try {
+    const productId = Number(req.params.productId);
+    if (!productId) {
+      throw new ClientError(400, 'productId must be a positive integer!');
+    }
+    const sql = `
+      select "productId",
+             "name",
+             "price",
+             "imageUrl",
+             "description",
+             "minPlayers",
+             "maxPlayers"
+        from "products"
+        where "productId" = $1
+    `;
+    const params = [productId];
+    const result = await db.query(sql, params);
+    if (!result.rows[0]) {
+      throw new ClientError(404, `Cannot find the product that matches productId${productId}`);
+    }
+    res.json(result.rows[0]);
   } catch (err) {
     next(err);
   }
