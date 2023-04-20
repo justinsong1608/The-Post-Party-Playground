@@ -14,7 +14,6 @@ CREATE TABLE "public"."products" (
 	"minPlayers"         int         NOT NULL,
 	"maxPlayers"         int         NOT NULL,
 	"imageUrl"           TEXT        NOT NULL,
-	"thumbUrl"           TEXT        NOT NULL,
 	"primaryPublisher"   TEXT        NOT NULL,
 	"primaryDesigner"    TEXT        NOT NULL,
 	CONSTRAINT "product_pk" PRIMARY KEY ("productId")
@@ -101,7 +100,6 @@ CREATE TABLE "public"."orderContents" (
 	"minPlayers"         int         NOT NULL,
 	"maxPlayers"         int         NOT NULL,
 	"imageUrl"           TEXT        NOT NULL,
-	"thumbUrl"           TEXT        NOT NULL,
 	"primaryPublisher"   TEXT        NOT NULL,
 	"primaryDesigner"    TEXT        NOT NULL,
 	CONSTRAINT "orderContents_pk" PRIMARY KEY ("orderContentsId")

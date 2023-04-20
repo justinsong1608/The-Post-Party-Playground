@@ -31,7 +31,7 @@ app.get('/api/products', async (req, res, next) => {
              "description",
              "minPlayers",
              "maxPlayers",
-             "thumbUrl"
+             "imageUrl"
         FROM "products"
     `;
     const result = await db.query(sql);
@@ -45,7 +45,7 @@ app.get('/api/products', async (req, res, next) => {
 app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
-      SELECT "p"."thumbUrl" as "img",
+      SELECT "p"."imageUrl" as "img",
              "p"."name" as "name",
              "f"."featuredId" as "featuredId",
              "f"."productId" as "productId"
