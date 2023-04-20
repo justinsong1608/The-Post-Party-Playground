@@ -5,6 +5,7 @@ import { FaUserAstronaut } from 'react-icons/fa';
 import { AiFillHeart } from 'react-icons/ai';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { CgGames } from 'react-icons/cg';
+import colorTitle from './ColorTitle';
 
 export default function Header() {
   return (
@@ -51,28 +52,4 @@ export default function Header() {
       <Outlet />
     </>
   );
-}
-
-// This function adds different colors for each individual letter in a word. //
-function colorTitle(word) {
-  const titleWithSpace = word.split('');
-  const title = titleWithSpace.filter(function (str) {
-    return /\S/.test(str);
-  });
-
-  let fixedKey = 0; //This is when I add back the spaces. The spaces need keys that are unique.//
-  const titleWithColor = title.map((letter, index) => {
-      fixedKey++;
-      return (<span key={index} className={`butcherman-${index % 7 + 1}`}>{letter}</span>);
-  });
-
-  // Add spaces back to the title
-  for (let i = 0; i < titleWithSpace.length; i++) {
-    if (titleWithSpace[i] === ' ') {
-      titleWithColor.splice(i, 0, <span key={fixedKey}> </span>); //fixedKey is a unique number that increments from the previous key //
-      fixedKey++;
-    }
-  }
-
-  return (<div>{titleWithColor}</div>);
 }
