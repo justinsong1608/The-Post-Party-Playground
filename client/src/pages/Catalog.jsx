@@ -43,7 +43,7 @@ export default function Catalog() {
       <br />
       <div className='row'>
         {products?.map((product) => (
-          <div key={product.productId} className='col-12 col-md-6 col-lg-4'>
+          <div key={product.productId} className="col-12 col-md-6 col-lg-4">
             <Product product={product} />
           </div>
         ))}
@@ -55,10 +55,10 @@ export default function Catalog() {
 function Product({ product }) {
   const { productId, name, price, description, minPlayers, maxPlayers, thumbUrl } = product;
   return (
-    <Link to={`/details/${productId}`} className='product text-dark card mb-4 shadow-sm text-decoration-none' style={{ height: '32.5rem' }}>
-      <img src={thumbUrl} className='image card-img-top' alt={name} />
+    <Link to={`/details/${productId}`} className="product text-dark card mb-4 shadow-sm text-decoration-none" style={{ height: '32.5rem' }}>
+      <img src={thumbUrl} className="image card-img-top" alt={name} />
       <hr />
-      <div className="card-body">
+      <div className="p-2">
         <h3 className="card-title">{name}</h3>
         <h5 className="card-text text-secondary">${price}</h5>
         <h6 className="description card-text"><GiTabletopPlayers size={25}/> Players: {minPlayers} - {maxPlayers}</h6>
