@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { AiOutlineLeft, AiOutlineRight, AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { RiGamepadFill, RiGamepadLine } from 'react-icons/ri';
 import './Carousel.css';
 import { Link } from 'react-router-dom';
 
@@ -82,7 +83,7 @@ function Buttons({ data, onShow, currentIndex }) {
     <Button
       key={index}
       onShow={() => onShow(index)}>
-      {index === currentIndex ? <AiFillStar size={30} className="red" /> : <AiOutlineStar size={30} className="red" />}
+      {index === currentIndex ? <RiGamepadFill size={30} className="red" /> : <RiGamepadLine size={30} className="red" />}
       </Button>
 
   ));
