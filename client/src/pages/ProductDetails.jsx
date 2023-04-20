@@ -81,10 +81,10 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-3 mb-4 mx-auto product-detail-background">
         <div className="col-12 mt-4 mb-4">
-          <h4>Description</h4>
-          <p>{description}</p>
+          <h3 style={{ fontWeight: 'bold' }}>Description</h3>
+          <h6 style={{ lineHeight: 2 }}>{description}</h6>
         </div>
       </div>
     </div>
