@@ -42,8 +42,16 @@ export default function Carousel() {
     setCurrentIndex(index);
   }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error Loading Catalog: {error.message}</div>;
+  if (isLoading) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <span className="spinner-border text-secondary" role="status"></span>
+    </div>
+  );
+
+  if (error) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <span className="text-center">Error Loading Catalog: {error.message}</span>
+    </div>);
 
   return (
     <div>

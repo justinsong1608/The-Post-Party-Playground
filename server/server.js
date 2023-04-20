@@ -2,7 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
 import pg from 'pg';
-import cors from 'cors';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -13,7 +12,6 @@ const db = new pg.Pool({
 });
 
 const app = express();
-app.use(cors({ origin: '*' }));
 // Create paths for static directories
 const reactStaticDir = new URL('../client/build', import.meta.url).pathname;
 const uploadsStaticDir = new URL('public', import.meta.url).pathname;
