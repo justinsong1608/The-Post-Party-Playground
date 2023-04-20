@@ -1,4 +1,4 @@
-.image-carousel:hover {
+.backgound-carousel:hover {
   transform: scale(1.1);
 }
 
@@ -16,7 +16,7 @@
   height: 5rem;
 }
 
-.image-carousel {
+.background-carousel {
   background-color: white;
   border-radius: 2rem;
   width: 80%;
@@ -31,4 +31,13 @@
   font-family: 'Butcherman', cursive;
   color: #FF0000;
   text-align: center;
+}
+
+.img-carousel {
+  width: 20rem;
+  height: 20rem;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
 }

@@ -56,7 +56,7 @@ function Product({ product }) {
   const { productId, name, price, description, minPlayers, maxPlayers, imageUrl } = product;
   return (
     <Link to={`/details/${productId}`} className="product text-dark card mb-4 shadow-sm text-decoration-none" style={{ height: '32.5rem' }}>
-      <img src={imageUrl} className="image card-img-top" alt={name} />
+      <img src={imageUrl} className="catalog-img card-img-top" alt={name} />
       <hr />
       <div className="p-2">
         <h3 className="card-title">{name}</h3>
