@@ -1,0 +1,34 @@
+.image-carousel:hover {
+  transform: scale(1.1);
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 4rem;
+  height: 5rem;
+}
+
+.image-carousel {
+  background-color: white;
+  border-radius: 2rem;
+  width: 80%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.red {
+  color: red;
+}
+
+.featured-products {
+  font-family: 'Butcherman', cursive;
+  color: #FF0000;
+  text-align: center;
+}
