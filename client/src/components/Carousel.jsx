@@ -13,13 +13,6 @@ export default function Carousel() {
   const handleClickNext = useCallback(() => setCurrentIndex((currentIndex + 1) % products.length), [currentIndex, products]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      handleClickNext();
-    }, 3000);
-    return () => clearInterval(intervalId);
-  }, [handleClickNext]);
-
-  useEffect(() => {
     async function loadCatalog() {
       try {
         const res = await fetch('/api/featuredProducts');
@@ -35,6 +28,14 @@ export default function Carousel() {
     setIsLoading(true);
     loadCatalog();
   }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      handleClickNext();
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [handleClickNext]);
+
 
   function handleClickPre() {
     setCurrentIndex(((currentIndex - 1) + products.length) % products.length);
