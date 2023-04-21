@@ -1,7 +1,7 @@
 import './Home.css';
 import Carousel from '../components/Carousel';
 import { Link } from 'react-router-dom';
-import NewsLetter from './NewsLetter';
+import NewsLetter from '../components/NewsLetter';
 
 export default function Home() {
 

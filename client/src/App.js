@@ -1,54 +1,60 @@
-// import { useEffect, useState } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
-import Account from './pages/Account.jsx';
+import Auth from './pages/Auth.jsx';
 import Wishlist from './pages/Wishlist.jsx';
 import Cart from './pages/Cart.jsx';
 import ProductDeatils from './pages/ProductDetails';
 import Footer from './components/Footer';
+import AppContext from './components/AppContext';
+import jwtDecode from 'jwt-decode';
+
+const tokenKey = 'react-jwt';
 
 function App() {
-  // const [serverData, setServerData] = useState("");
+  const [user, setUser] = useState();
+  const [isAuthorizing, setIsAuthorizing] = useState(true);
 
-  // useEffect(() => {
-  //   async function getServerData() {
-  //     const resp = await fetch('/api/hello');
-  //     const data = await resp.json();
+  useEffect(() => {
+    const token = localStorage.getItem(tokenKey);
+    const user = token ? jwtDecode(token) : null;
+    setUser(user);
+    setIsAuthorizing(false);
+  }, []);
 
-  //     console.log('Data from server:', data);
+  if (isAuthorizing) return null;
 
-  //     setServerData(data.message);
-  //   }
+  function handleSignIn(result) {
+    const { user, token } = result;
+    localStorage.setItem(tokenKey, token);
+    setUser(user);
+  }
 
-  //   getServerData();
-  // }, []);
+  function handleSignOut() {
+    localStorage.removeItem(tokenKey);
+    setUser(undefined);
+  }
 
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <h1>{serverData}</h1>
-  //     </header>
-  //   </div>
-  // );
+  const contextValue = { user, handleSignIn, handleSignOut };
+
   return (
-    <>
+    <AppContext.Provider value={contextValue}>
       <Routes>
         <Route path='/' element={<Header />}>
           <Route index element={<Home />} />
           <Route path='catalog' element={<Catalog />} />
-          <Route path='account' element={<Account />} />
+          <Route path='sign-up' element={<Auth action="sign-up" />} />
+          <Route path='sign-in' element={<Auth action="sign-in" />} />
           <Route path='wishlist' element={<Wishlist />} />
           <Route path='cart' element={<Cart />} />
           <Route path='details/:productId' element={<ProductDeatils />} />
         </Route>
       </Routes>
       <Footer />
-    </>
+    </AppContext.Provider>
   )
 }
 

@@ -1,6 +1,6 @@
  // This function adds different colors for each individual letter in a word. //
 
-export default function colorTitle(word) {
+export default function ColorTitle({ word }) {
   const titleWithSpace = word.split('');
   const title = titleWithSpace.filter(function (str) {
     return /\S/.test(str);
@@ -20,5 +20,5 @@ export default function colorTitle(word) {
     }
   }
 
-  return (<div>{titleWithColor}</div>);
+  return (<>{titleWithColor}</>);
 }

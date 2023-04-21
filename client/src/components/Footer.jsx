@@ -27,7 +27,7 @@ export default function Footer() {
               <div className="col-auto">
                 <a className="white" target="_blank" href="https://github.com/justinsong1608/The-Post-Party-Playground" rel="noreferrer"><BsGithub size={25}/></a>
               </div>
-              <h4 className="white mt-3">Don't Forget to Follow Us</h4>
+              <h4 className="white mt-3">Don't Forget to Follow Us!</h4>
             </div>
           </div>
 
