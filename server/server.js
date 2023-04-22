@@ -49,7 +49,7 @@ app.get('/api/products', async (req, res, next) => {
 app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
-      SELECT "p"."imageUrl" as "img",
+      SELECT "p"."imageUrl" as "imageUrl",
              "p"."name" as "name",
              "f"."featuredId" as "featuredId",
              "f"."productId" as "productId"
@@ -70,15 +70,15 @@ app.get('/api/products/:productId', async (req, res, next) => {
       throw new ClientError(400, 'productId must be a positive integer!');
     }
     const sql = `
-      select "productId",
+      SELECT "productId",
              "name",
              "price",
              "imageUrl",
              "description",
              "minPlayers",
              "maxPlayers"
-        from "products"
-        where "productId" = $1
+        FROM "products"
+       WHERE "productId" = $1
     `;
     const params = [productId];
     const result = await db.query(sql, params);
@@ -100,8 +100,8 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     const hashedPassword = await argon2.hash(password);
     const sql = `
       INSERT INTO "customerAccounts" ("firstName", "lastName", "email", "address", "state", "city", "zipCode", "username", "hashedPassword")
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-      returning "customerId", "username", "firstName", "lastName", "email", "address", "state", "city", "zipCode"
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      RETURNING "customerId", "username", "firstName", "lastName", "email", "address", "state", "city", "zipCode"
     `;
     const params = [firstName, lastName, email, address, state, city, zipCode, username, hashedPassword];
     const result = await db.query(sql, params);
@@ -119,10 +119,10 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
       throw new ClientError(400, 'Username and Password are required');
     }
     const sql = `
-      select "customerId",
+      SELECT "customerId",
              "hashedPassword"
-        from "customerAccounts"
-        where "username" = $1
+        FROM "customerAccounts"
+       WHERE "username" = $1
     `;
     const params = [username];
     const result = await db.query(sql, params);
@@ -145,9 +145,49 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
-// // // app.get('/api/cart/', async (req, res, next) => {
-// // //   const { customerId } = req.user;
-// // // });
+app.get('/api/cart', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const sql = `
+      SELECT "p"."name" as "name",
+             "p"."price" as "price",
+             "p"."description" as "description",
+             "p"."minPlayers" as "minPlayers",
+             "p"."maxPlayers" as "maxPlayers",
+             "p"."imageUrl" as "imageUrl",
+             "c"."quantity" as "quantity"
+         FROM "products" as "p"
+         JOIN "cart" as "c" USING ("productId")
+        WHERE "c"."customerId" = $1
+    `;
+    const params = [customerId];
+    const result = await db.query(sql, params);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/cart', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const { productId, quantity } = req.body;
+    if (!productId || !quantity) {
+      throw new ClientError(400, 'productId and quantity are required fields!');
+    }
+    const sql = `
+      INSERT INTO "cart" ("customerId", "productId", "quantity")
+          VALUES ($1, $2, $3)
+      RETURNING "customerId", "productId", "quantity"
+    `;
+    const params = [customerId, productId, quantity];
+    const result = await db.query(sql, params);
+    const [item] = result.rows;
+    res.status(201).json(item);
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.use(errorMiddleware);
 

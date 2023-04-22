@@ -63,7 +63,7 @@ export default function Carousel() {
         <Button onShow={handleClickPre}><AiOutlineLeft size={40} className="red" /></Button>
         <div className="d-flex justify-content-center background-carousel">
           <Link to={`/details/${products[currentIndex].productId}`}>
-            <img src={products[currentIndex].img} alt={products[currentIndex].name} className="img-carousel"/>
+            <img src={products[currentIndex].imageUrl} alt={products[currentIndex].name} className="img-carousel"/>
           </Link>
         </div>
         <Button onShow={handleClickNext}><AiOutlineRight size={40} className="red" /></Button>
