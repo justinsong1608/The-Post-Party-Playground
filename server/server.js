@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import errorMiddleware from './lib/error-middleware.js';
+import authorizationMiddleware from './lib/authorization-middleware.js';
 import pg from 'pg';
 import ClientError from './lib/client-error.js';
 import argon2 from 'argon2';
@@ -38,7 +39,7 @@ app.get('/api/products', async (req, res, next) => {
         FROM "products"
     `;
     const result = await db.query(sql);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (err) {
     next(err);
   }
@@ -56,7 +57,7 @@ app.get('/api/featuredProducts', async (req, res, next) => {
         JOIN "featuredProducts" as "f" USING ("productId")
     `;
     const result = await db.query(sql);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (err) {
     next(err);
   }
@@ -84,7 +85,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
     if (!result.rows[0]) {
       throw new ClientError(404, `Cannot find the product that matches productId${productId}`);
     }
-    res.json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (err) {
     next(err);
   }
@@ -136,11 +137,17 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     }
     const payload = { customerId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-    res.json({ token, user: payload });
+    res.status(201).json({ token, user: payload });
   } catch (err) {
     next(err);
   }
 });
+
+app.use(authorizationMiddleware);
+
+// // // app.get('/api/cart/', async (req, res, next) => {
+// // //   const { customerId } = req.user;
+// // // });
 
 app.use(errorMiddleware);
 
