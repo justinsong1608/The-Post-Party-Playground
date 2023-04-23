@@ -12,7 +12,7 @@ export default function Catalog() {
     async function loadCatalog() {
       try{
         const res = await fetch('/api/products');
-        if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+        if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
         const products = await res.json();
         setProducts(products);
       } catch (err) {

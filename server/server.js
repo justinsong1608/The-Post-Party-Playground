@@ -182,8 +182,8 @@ app.post('/api/cart', async (req, res, next) => {
     `;
     const params = [customerId, productId, quantity];
     const result = await db.query(sql, params);
-    const [item] = result.rows;
-    res.status(201).json(item);
+    const [product] = result.rows;
+    res.status(201).json(product);
   } catch (err) {
     next(err);
   }
