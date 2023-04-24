@@ -47,14 +47,27 @@ export default function Cart() {
     </div>);
 
   return (
-    <>
-      {products?.map((product) => (
-        <div key={product.cartId} className="mt-5 mb-5">
-          <CartProducts product={product} />
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h1 className="mt-4 my-cart-title">Your Cart</h1>
         </div>
-      ))}
-    </>
+      </div>
+      <div className="row">
+        <div className="col-12 col-md-9">
+          {products?.map((product) => (
+            <div key={product.cartId} className="mt-3 mb-5">
+              <CartProducts product={product} />
+            </div>
+          ))}
+        </div>
+        <div className="col-12 col-md-3 mt-2 mb-5">
+          Check Out
+        </div>
+      </div>
+    </div>
   );
+
 }
 
 function CartProducts({ product }) {
@@ -64,10 +77,10 @@ function CartProducts({ product }) {
       <div className="card shadow-sm">
         <div className="card-body">
           <div className="row mb-4">
-            <div className="col-12 col-sm-6 col-md-5">
-              <img src={imageUrl} alt={name} className="cartImage mx-auto" />
+            <div className="col-12 col-md-5 mb-3 mb-md-0">
+              <img src={imageUrl} alt={name} className="cartImage img-fluid mx-auto" />
             </div>
-            <div className="col-12 col-sm-6 col-md-7">
+            <div className="col-12 col-md-7">
               <h2>{name}</h2>
               <h5 className="text-secondary">${price}</h5>
               <p className="description card-text text-truncate">{description}</p>
@@ -79,5 +92,6 @@ function CartProducts({ product }) {
         </div>
       </div>
     </div>
+
   );
 }

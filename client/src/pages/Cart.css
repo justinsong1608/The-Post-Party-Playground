@@ -6,4 +6,11 @@ body {
   width: 20rem;
   height: 20rem;
   object-fit: contain;
+  margin: 0;
+  display: block;
+}
+
+.my-cart-title {
+  font-family: 'Butcherman', cursive;
+  color: red;
 }
