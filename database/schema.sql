@@ -32,7 +32,7 @@ CREATE TABLE "public"."customerAccounts" (
 	"state"              TEXT        NOT NULL,
 	"city"               TEXT        NOT NULL,
 	"zipCode"            TEXT        NOT NULL,
-	"username"           TEXT        NOT NULL,
+	"username"           TEXT        NOT NULL UNIQUE,
 	"hashedPassword"     TEXT        NOT NULL,
 	CONSTRAINT "customerAccounts_pk" PRIMARY KEY ("customerId")
 ) WITH (
