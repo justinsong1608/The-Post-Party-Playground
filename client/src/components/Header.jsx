@@ -39,6 +39,12 @@ export default function Header() {
                   </Link>
               </li>
               <li className="nav-item">
+                <Link to='/wishlist' className="nav-link text-nowrap" onClick={handleLinkClick}>
+                  <AiFillHeart size={33} style={{ color: 'red' }} />
+                  <span className="d-md-inline ms-1 fw-semibold butcherman-link">Wishlist</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 {user &&
                   <Link to='/sign-in' className="nav-link text-nowrap" onClick={() => { handleSignOut(); handleLinkClick(); }}>
                     <FaSignOutAlt size={33} />
@@ -51,12 +57,6 @@ export default function Header() {
                     <span className="d-md-inline ms-1 fw-semibold butcherman-link">Your Account</span>
                   </Link>
                 }
-              </li>
-              <li className="nav-item">
-                <Link to='/wishlist' className="nav-link text-nowrap" onClick={handleLinkClick}>
-                  <AiFillHeart size={33} style={{color: 'red'}}/>
-                  <span className="d-md-inline ms-1 fw-semibold butcherman-link">Wishlist</span>
-                </Link>
               </li>
               <li className="nav-item">
                 <Link to='/cart' className="nav-link text-nowrap" onClick={handleLinkClick}>

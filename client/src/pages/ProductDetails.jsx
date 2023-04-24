@@ -1,14 +1,13 @@
 import './ProductDetails.css';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi';
 import { TbArrowBackUp } from 'react-icons/tb';
 import { RiStarSLine } from 'react-icons/ri';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsFillCheckCircleFill, BsTruck } from 'react-icons/bs';
 import { SlSocialDropbox } from 'react-icons/sl';
-import AddToCart from '../components/AddToCart';
+import AddToCartForm from '../components/AddToCartForm';
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -72,7 +71,7 @@ export default function ProductDetails() {
             </div>
             <h4 className="text-dark mt-2">{`$${price}`}</h4>
             <h5><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h5>
-            <AddToCart />
+            <AddToCartForm />
             <hr />
             <h5><AiOutlineHeart className="red mx-1" size={40} />Add to Wishlist</h5>
             <h5 className="mt-3"><BsFillCheckCircleFill className="mx-1 green" size={40} />Free 30 Day Returns</h5>
