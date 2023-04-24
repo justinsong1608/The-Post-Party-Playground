@@ -191,6 +191,25 @@ app.post('/api/cart', async (req, res, next) => {
   }
 });
 
+app.delete('/api/cart', async (req, res, next) => {
+  try {
+    const { cartId } = req.body;
+    if (!cartId) {
+      throw new ClientError(400, 'cartId are required fields!');
+    }
+    const sql = `
+      DELETE
+        FROM "cart"
+        WHERE "cartId" = $1
+    `;
+    const params = [cartId];
+    const result = await db.query(sql, params);
+    res.status(204).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
