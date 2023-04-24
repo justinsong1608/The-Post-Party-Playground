@@ -2,6 +2,7 @@ import './Cart.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi'
+import { removeFromCart } from '../lib/cartApi';
 
 export default function Cart() {
   const [products, setProducts] = useState();
@@ -33,6 +34,11 @@ export default function Cart() {
     getCart();
   }, []);
 
+  function updateCart(cartId) {
+    const updatedProducts = products.filter(p => p.cartId !== cartId);
+    setProducts(updatedProducts);
+  }
+
   if (isLoading) return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
       <span className="spinner-border text-secondary" role="status"></span>
@@ -57,7 +63,7 @@ export default function Cart() {
         <div className="col-12 col-md-9">
           {products?.map((product) => (
             <div key={product.cartId} className="mt-3 mb-5">
-              <CartProducts product={product} />
+              <CartProducts product={product} update={updateCart} />
             </div>
           ))}
         </div>
@@ -70,8 +76,18 @@ export default function Cart() {
 
 }
 
-function CartProducts({ product }) {
-  const { name, price, description, minPlayers, maxPlayers, imageUrl, quantity } = product;
+function CartProducts({ product, update }) {
+  const { name, price, description, minPlayers, maxPlayers, imageUrl, quantity, cartId } = product;
+
+  function handleRemoveProduct(event) {
+    event.preventDefault();
+    const removeProduct = {
+      cartId
+    };
+    removeFromCart(removeProduct);
+    update(cartId)
+  };
+
   return (
     <div className="container">
       <div className="card shadow-sm">
@@ -86,12 +102,11 @@ function CartProducts({ product }) {
               <p className="description card-text text-truncate">{description}</p>
               <h6 className="description card-text"><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h6>
               <p>{`Quantity: ${quantity}`}</p>
-              <button className=" add-cart-button btn btn-outline-danger my-2 my-sm-0" >Remove from cart</button>
+              <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleRemoveProduct}>Remove from cart</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 }
