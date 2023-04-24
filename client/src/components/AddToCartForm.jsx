@@ -1,21 +1,33 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import addToCart from '../lib/addToCartApi';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddToCartForm() {
   const { productId } = useParams();
-  const [product, setProduct] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
-  // onSubmit = {}
+  const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+
+  function handleAddProduct(event) {
+    event.preventDefault();
+    const product = {
+      productId,
+      quantity
+    };
+    addToCart(product);
+    setQuantity(1);
+    navigate('/cart');
+  }
+
   return (
-    <form>
+    <form onSubmit={handleAddProduct}>
       <div className="row mt-3">
         <div className="col-sm-2">
           <div className="input-group mb-3">
-            <select className="form-select text-center">
-              <option selected>1</option>
-              <option>2</option>
-              <option>3</option>
+            <select className="form-select text-center" onChange={ e => setQuantity(e.target.value)}>
+              <option defaultValue={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
             </select>
           </div>
         </div>

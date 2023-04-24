@@ -155,10 +155,12 @@ app.get('/api/cart', async (req, res, next) => {
              "p"."minPlayers" as "minPlayers",
              "p"."maxPlayers" as "maxPlayers",
              "p"."imageUrl" as "imageUrl",
-             "c"."quantity" as "quantity"
+             "c"."quantity" as "quantity",
+             "c"."cartId" as "cartId"
          FROM "products" as "p"
          JOIN "cart" as "c" USING ("productId")
         WHERE "c"."customerId" = $1
+        ORDER by "c"."cartId"
     `;
     const params = [customerId];
     const result = await db.query(sql, params);

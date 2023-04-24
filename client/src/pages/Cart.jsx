@@ -47,28 +47,37 @@ export default function Cart() {
     </div>);
 
   return (
-    <div>
+    <>
       {products?.map((product) => (
-        <div key={product.productId} className="col-12 col-md-6 col-lg-4">
-          <Product product={product} />
+        <div key={product.cartId} className="mt-5 mb-5">
+          <CartProducts product={product} />
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
-function Product({ product }) {
-  const { productId, name, price, description, minPlayers, maxPlayers, imageUrl } = product;
+function CartProducts({ product }) {
+  const { name, price, description, minPlayers, maxPlayers, imageUrl, quantity } = product;
   return (
-    <Link to={`/details/${productId}`} className="product text-dark card mb-4 shadow-sm text-decoration-none" style={{ height: '32.5rem' }}>
-      <img src={imageUrl} className="catalog-img card-img-top" alt={name} />
-      <hr />
-      <div className="p-2">
-        <h3 className="card-title">{name}</h3>
-        <h5 className="card-text text-secondary">${price}</h5>
-        <h6 className="description card-text"><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h6>
-        <p className="description card-text text-truncate">{description}</p>
+    <div className="container">
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <div className="row mb-4">
+            <div className="col-12 col-sm-6 col-md-5">
+              <img src={imageUrl} alt={name} className="cartImage mx-auto" />
+            </div>
+            <div className="col-12 col-sm-6 col-md-7">
+              <h2>{name}</h2>
+              <h5 className="text-secondary">${price}</h5>
+              <p className="description card-text text-truncate">{description}</p>
+              <h6 className="description card-text"><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h6>
+              <p>{`Quantity: ${quantity}`}</p>
+              <button className=" add-cart-button btn btn-outline-danger my-2 my-sm-0" >Remove from cart</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </Link>
-  )
+    </div>
+  );
 }

@@ -19,7 +19,7 @@ export default function Auth({ action }) {
     : 'Create an account to get started!';
 
     return (
-      <div className="row pt-5 mb-5 mx-auto align-items-center">
+      <div className="row pt-5 mb-5 mx-auto align-items-center mt-5">
         <div className="col-12 offset-0 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-4 offset-xl-4">
           <header className="text-center">
             <h2 className="mb-2">
