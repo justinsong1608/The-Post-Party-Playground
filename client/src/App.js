@@ -41,21 +41,40 @@ function App() {
   const contextValue = { user, handleSignIn, handleSignOut };
 
   return (
-    <AppContext.Provider value={contextValue}>
-      <Routes>
-        <Route path='/' element={<Header />}>
-          <Route index element={<Home />} />
-          <Route path='catalog' element={<Catalog />} />
-          <Route path='sign-up' element={<Auth action="sign-up" />} />
-          <Route path='sign-in' element={<Auth action="sign-in" />} />
-          <Route path='wishlist' element={<Wishlist />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='details/:productId' element={<ProductDeatils />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </AppContext.Provider>
+    <div className="d-flex flex-column min-vh-100">
+      <AppContext.Provider value={contextValue}>
+        <div className="flex-grow-1">
+          <Routes>
+            <Route path='/' element={<Header />}>
+              <Route index element={<Home />} />
+              <Route path='catalog' element={<Catalog />} />
+              <Route path='sign-up' element={<Auth action="sign-up" />} />
+              <Route path='sign-in' element={<Auth action="sign-in" />} />
+              <Route path='wishlist' element={<Wishlist />} />
+              <Route path='cart' element={<Cart />} />
+              <Route path='details/:productId' element={<ProductDeatils />} />
+            </Route>
+          </Routes>
+        </div>
+        <Footer />
+      </AppContext.Provider>
+    </div>
   )
 }
 
 export default App;
+
+ // <AppContext.Provider value={contextValue}>
+    //   <Routes>
+    //     <Route path='/' element={<Header />}>
+    //       <Route index element={<Home />} />
+    //       <Route path='catalog' element={<Catalog />} />
+    //       <Route path='sign-up' element={<Auth action="sign-up" />} />
+    //       <Route path='sign-in' element={<Auth action="sign-in" />} />
+    //       <Route path='wishlist' element={<Wishlist />} />
+    //       <Route path='cart' element={<Cart />} />
+    //       <Route path='details/:productId' element={<ProductDeatils />} />
+    //     </Route>
+    //   </Routes>
+    //   <Footer />
+    // </AppContext.Provider>

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi'
 import { removeFromCart } from '../lib/cartApi';
+import totalPrice from '../lib/checkout';
+import { totalQuantity } from '../lib/checkout';
 
 export default function Cart() {
   const [products, setProducts] = useState();
@@ -67,13 +69,20 @@ export default function Cart() {
             </div>
           ))}
         </div>
-        <div className="col-12 col-md-3 mt-2 mb-5">
-          Check Out
+        <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
+          <div className="checkout-blue p-3 text-center">
+            <h3>Subtotal ({totalQuantity(products)} {totalQuantity(products) === 1 ? 'item' : 'items'}):</h3>
+            <h3>${totalPrice(products)}</h3>
+            <hr />
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <button className="checkout-button btn btn-danger mb-3">Empty Cart</button>
+              <button className="checkout-button btn btn-success">Checkout</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-
 }
 
 function CartProducts({ product, update }) {

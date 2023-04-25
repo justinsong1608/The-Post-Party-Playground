@@ -14,3 +14,12 @@ body {
   font-family: 'Butcherman', cursive;
   color: red;
 }
+
+.checkout-blue {
+  background-color: #E2F3FF;
+  border-radius: .5rem;
+}
+
+.checkout-button {
+  width: 80%;
+}

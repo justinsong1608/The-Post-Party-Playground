@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import addToCart from '../lib/cartApi';
+// import { isProductInCart } from '../lib/cartApi';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddToCartForm() {
