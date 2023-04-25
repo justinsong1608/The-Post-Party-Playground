@@ -11,8 +11,8 @@ export default function AddToCartForm() {
   const navigate = useNavigate();
 
   async function handleAddProduct(event) {
+    event.preventDefault();
     try {
-      event.preventDefault();
       const product = {
         productId,
         quantity
@@ -21,21 +21,18 @@ export default function AddToCartForm() {
       const findProductInCart = cartProducts.filter(item => item.productId === Number(product.productId));
       if (findProductInCart.length === 0) {
         await addToCart(product);
-        setQuantity(1);
-        navigate('/cart');
       } else {
         const updateProduct = {
           cartId: findProductInCart[0].cartId,
           quantity: (Number(quantity) + findProductInCart[0].quantity),
         };
         await updateQuantity(updateProduct);
-        setQuantity(1);
-        navigate('/cart');
       }
+      setQuantity(1);
+      navigate('/cart');
     } catch (err) {
       setError(err);
     }
-
   }
 
   return (
