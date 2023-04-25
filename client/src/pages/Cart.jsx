@@ -41,6 +41,11 @@ export default function Cart() {
     setProducts(updatedProducts);
   }
 
+  function emptyCart() {
+    products.map(product => removeFromCart(product));
+    setProducts();
+  }
+
   if (isLoading) return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
       <span className="spinner-border text-secondary" role="status"></span>
@@ -75,7 +80,7 @@ export default function Cart() {
             <h3>${totalPrice(products)}</h3>
             <hr />
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <button className="checkout-button btn btn-danger mb-3">Empty Cart</button>
+              <button className="checkout-button btn btn-danger mb-3" onClick={emptyCart}>Empty Cart</button>
               <button className="checkout-button btn btn-success">Checkout</button>
             </div>
           </div>
