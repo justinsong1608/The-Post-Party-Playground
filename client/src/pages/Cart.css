@@ -5,6 +5,7 @@ body {
 .cartImage {
   width: 16rem;
   height: 16rem;
+  max-width: 100%;
   object-fit: contain;
   margin: 0;
   display: block;
@@ -13,4 +14,13 @@ body {
 .my-cart-title {
   font-family: 'Butcherman', cursive;
   color: red;
+}
+
+.checkout-blue {
+  background-color: #E2F3FF;
+  border-radius: .5rem;
+}
+
+.checkout-button {
+  width: 80%;
 }

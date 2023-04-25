@@ -154,6 +154,7 @@ app.get('/api/cart', async (req, res, next) => {
              "p"."description" as "description",
              "p"."minPlayers" as "minPlayers",
              "p"."maxPlayers" as "maxPlayers",
+             "p"."productId" as "productId",
              "p"."imageUrl" as "imageUrl",
              "c"."quantity" as "quantity",
              "c"."cartId" as "cartId"
@@ -195,7 +196,7 @@ app.delete('/api/cart', async (req, res, next) => {
   try {
     const { cartId } = req.body;
     if (!cartId) {
-      throw new ClientError(400, 'cartId are required fields!');
+      throw new ClientError(400, 'cartId is a required field!');
     }
     const sql = `
       DELETE
@@ -205,6 +206,33 @@ app.delete('/api/cart', async (req, res, next) => {
     const params = [cartId];
     const result = await db.query(sql, params);
     res.status(204).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.patch('/api/cart', async (req, res, next) => {
+  try {
+    const { quantity, cartId } = req.body;
+    if (!cartId) {
+      throw new ClientError(400, 'cartId is a required field!');
+    }
+    if (Number(quantity) > 3) {
+      throw new ClientError(400, 'Total quantity in cart cannot be greater than 3!');
+    }
+    const sql = `
+      UPDATE "cart"
+          SET "quantity" = $1
+        WHERE "cartId" = $2
+      RETURNING *
+    `;
+    const params = [quantity, cartId];
+    const result = await db.query(sql, params);
+    const [updated] = result.rows;
+    if (!updated) {
+      throw new ClientError(404, 'cartId is not found!');
+    }
+    res.status(202).json(updated);
   } catch (err) {
     next(err);
   }
