@@ -5,6 +5,7 @@ import { GiTabletopPlayers } from 'react-icons/gi'
 import { removeFromCart } from '../lib/cartApi';
 import totalPrice from '../lib/checkout';
 import { totalQuantity } from '../lib/checkout';
+import { getCart } from '../lib/cartApi';
 
 export default function Cart() {
   const [products, setProducts] = useState();
@@ -12,20 +13,10 @@ export default function Cart() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    async function getCart() {
+    async function readCart() {
       try {
-        const token = localStorage.getItem('react-jwt');
-        if (!token) {
-          throw new Error('Please log in or create an account to have access to adding items to your Cart!')
-        }
-        const res = await fetch('/api/cart', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
-        const products = await res.json();
-        setProducts(products);
+        const cartProducts = await getCart()
+        setProducts(cartProducts);
       } catch (err) {
         setError(err);
       } finally {
@@ -33,7 +24,7 @@ export default function Cart() {
       }
     }
     setIsLoading(true);
-    getCart();
+    readCart();
   }, []);
 
   function updateCart(cartId) {

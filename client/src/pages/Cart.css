@@ -5,6 +5,7 @@ body {
 .cartImage {
   width: 16rem;
   height: 16rem;
+  max-width: 100%;
   object-fit: contain;
   margin: 0;
   display: block;

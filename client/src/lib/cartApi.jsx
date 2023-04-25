@@ -16,6 +16,9 @@ export default async function addToCart(addProduct) {
 
 export async function removeFromCart(removeProduct) {
   const token = localStorage.getItem('react-jwt');
+  if (!token) {
+    throw new Error('Please log in or create an account to have access to adding items to your Cart!')
+  }
   const res = await fetch('/api/cart', {
     method: 'DELETE',
     headers: {
@@ -27,19 +30,36 @@ export async function removeFromCart(removeProduct) {
   if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
 }
 
-// export async function isProductInCart(productId) {
-//   const token = localStorage.getItem('react-jwt');
-//   const res = await fetch('/api/cart', {
-//     headers: {
-//       'Authorization': `Bearer ${token}`
-//     }
-//   });
-//   if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
-//   const products = await res.json();
-//   const check = products?.filter(product => productId === product.productId);
-//   if (check.length === 1) {
-//     return check.productId;
-//   } else {
-//     return undefined;
-//   }
-// }
+export async function updateQuantity(cartId) {
+  const token = localStorage.getItem('react-jwt');
+  if (!token) {
+    throw new Error('Please log in or create an account to have access to adding items to your Cart!')
+  }
+  const res = await fetch('/api/cart', {
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(cartId)
+  });
+  if (!res.ok){
+    const message = await res.text(res.body);
+    throw new Error(`${message.substring(10, message.length - 2)}`);
+  }
+}
+
+export async function getCart() {
+  const token = localStorage.getItem('react-jwt');
+  if (!token) {
+    throw new Error('Please log in or create an account to have access to adding items to your Cart!')
+  }
+  const res = await fetch('/api/cart', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
+  const products = await res.json();
+  return products;
+}
