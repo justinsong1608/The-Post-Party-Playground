@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
@@ -18,9 +18,6 @@ const tokenKey = 'react-jwt';
 function App() {
   const [user, setUser] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem(tokenKey);
@@ -42,25 +39,7 @@ function App() {
     setUser(undefined);
   }
 
-  function search(event) {
-    setSearchTerm(event)
-  }
-
-  async function handleSearch(event) {
-    event.preventDefault();
-    const url = `/api/search?term=${searchTerm}`;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
-      const data = await res.json();
-      setSearchResults(data);
-      navigate('/search');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const contextValue = { user, handleSignIn, handleSignOut, search, handleSearch, searchResults, searchTerm };
+  const contextValue = { user, handleSignIn, handleSignOut };
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -86,18 +65,3 @@ function App() {
 }
 
 export default App;
-
- // <AppContext.Provider value={contextValue}>
-    //   <Routes>
-    //     <Route path='/' element={<Header />}>
-    //       <Route index element={<Home />} />
-    //       <Route path='catalog' element={<Catalog />} />
-    //       <Route path='sign-up' element={<Auth action="sign-up" />} />
-    //       <Route path='sign-in' element={<Auth action="sign-in" />} />
-    //       <Route path='wishlist' element={<Wishlist />} />
-    //       <Route path='cart' element={<Cart />} />
-    //       <Route path='details/:productId' element={<ProductDeatils />} />
-    //     </Route>
-    //   </Routes>
-    //   <Footer />
-    // </AppContext.Provider>

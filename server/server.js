@@ -45,7 +45,7 @@ app.get('/api/products', async (req, res, next) => {
   }
 });
 
-// Gets the fetured products for carousel //
+// Gets the featured products for carousel //
 app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
@@ -97,7 +97,7 @@ app.get('/api/search', async (req, res, next) => {
   try {
     const searchTerm = req.query.term;
     if (!searchTerm) {
-      return res.status(400).json({ message: 'Search term is required' });
+      throw new ClientError(400, 'search term is required');
     }
     const sql = `
       SELECT *
@@ -107,6 +107,9 @@ app.get('/api/search', async (req, res, next) => {
     const params = [`%${searchTerm}%`];
     const result = await db.query(sql, params);
     const searchedProducts = result.rows;
+    if (result.rows.length === 0) {
+      throw new ClientError(400, 'No related product found! Please search again!');
+    }
     res.status(200).json(searchedProducts);
   } catch (err) {
     next(err);
