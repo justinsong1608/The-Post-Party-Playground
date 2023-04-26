@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const handleClickNext = useCallback(() => setCurrentIndex((currentIndex + 1) % products.length), [currentIndex, products]);
 

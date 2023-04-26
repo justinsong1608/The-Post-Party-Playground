@@ -16,7 +16,7 @@ import SearchResult from './pages/SearchResult';
 const tokenKey = 'react-jwt';
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [isAuthorizing, setIsAuthorizing] = useState(true);
 
   useEffect(() => {

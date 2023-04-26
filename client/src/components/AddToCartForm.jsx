@@ -7,7 +7,7 @@ import { getCart, updateQuantity } from '../lib/cartApi';
 export default function AddToCartForm() {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   async function handleAddProduct(event) {

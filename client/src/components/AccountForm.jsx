@@ -5,7 +5,7 @@ import './AccountForm.css';
 
 export default function AccountForm({ action, onSignIn }) {
   const navigate = useNavigate();
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   async function handleSubmitSignIn(event) {
     event.preventDefault();

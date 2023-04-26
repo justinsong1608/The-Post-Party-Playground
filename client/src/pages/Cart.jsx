@@ -8,9 +8,9 @@ import { totalQuantity } from '../lib/checkout';
 import { getCart } from '../lib/cartApi';
 
 export default function Cart() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function readCart() {
