@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpOrIn } from '../lib/accountApi';
-import './AuthForm.css';
+import './AccountForm.css';
 
-export default function AuthForm({ action, onSignIn }) {
+export default function AccountForm({ action, onSignIn }) {
   const navigate = useNavigate();
   const [error, setError] = useState();
 

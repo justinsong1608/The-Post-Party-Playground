@@ -45,7 +45,7 @@ app.get('/api/products', async (req, res, next) => {
   }
 });
 
-// Gets the fetured products for carousel //
+// Gets the featured products for carousel //
 app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
@@ -63,6 +63,7 @@ app.get('/api/featuredProducts', async (req, res, next) => {
   }
 });
 
+// Gets the product details //
 app.get('/api/products/:productId', async (req, res, next) => {
   try {
     const productId = Number(req.params.productId);
@@ -91,6 +92,31 @@ app.get('/api/products/:productId', async (req, res, next) => {
   }
 });
 
+// Searches for the product using the search bar //
+app.get('/api/search', async (req, res, next) => {
+  try {
+    const searchTerm = req.query.term;
+    if (!searchTerm) {
+      throw new ClientError(400, 'search term is required');
+    }
+    const sql = `
+      SELECT *
+        FROM "products"
+        WHERE "name" ILIKE $1
+    `;
+    const params = [`%${searchTerm}%`];
+    const result = await db.query(sql, params);
+    const searchedProducts = result.rows;
+    if (result.rows.length === 0) {
+      throw new ClientError(400, 'No related product found! Please search again!');
+    }
+    res.status(200).json(searchedProducts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Creating an account //
 app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password, firstName, lastName, email, address, state, city, zipCode } = req.body;
@@ -112,6 +138,7 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
   }
 });
 
+// User signing in //
 app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -143,8 +170,10 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   }
 });
 
+/* ⛔ Every route after this middleware requires a token! ⛔ */
 app.use(authorizationMiddleware);
 
+// Gets the cart products //
 app.get('/api/cart', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -171,6 +200,7 @@ app.get('/api/cart', async (req, res, next) => {
   }
 });
 
+// Adds a product to their cart //
 app.post('/api/cart', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -192,6 +222,7 @@ app.post('/api/cart', async (req, res, next) => {
   }
 });
 
+// Removes a product from their cart //
 app.delete('/api/cart', async (req, res, next) => {
   try {
     const { cartId } = req.body;
@@ -211,6 +242,7 @@ app.delete('/api/cart', async (req, res, next) => {
   }
 });
 
+// Updates the quantity inside of their carts //
 app.patch('/api/cart', async (req, res, next) => {
   try {
     const { quantity, cartId } = req.body;
