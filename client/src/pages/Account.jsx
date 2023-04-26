@@ -1,11 +1,11 @@
-import './Auth.css';
+import './Account.css';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthForm from '../components/AuthForm';
+import AccountForm from '../components/AccountForm';
 import AppContext from '../components/AppContext';
 import ColorTitle from  '../components/ColorTitle';
 
-export default function Auth({ action }) {
+export default function Account({ action }) {
   const navigate = useNavigate();
 
   const { user, handleSignIn } = useContext(AppContext);
@@ -28,7 +28,7 @@ export default function Auth({ action }) {
             <p className="text-muted mb-4">{welcomeMessage}</p>
           </header>
           <div className="card p-3 mb-5 blue">
-            <AuthForm
+            <AccountForm
               key={action}
               action={action}
               onSignIn={handleSignIn}/>

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
-import Auth from './pages/Auth.jsx';
+import Account from './pages/Account.jsx';
 import Wishlist from './pages/Wishlist.jsx';
 import Cart from './pages/Cart.jsx';
 import ProductDeatils from './pages/ProductDetails';
@@ -50,8 +50,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path='catalog' element={<Catalog />} />
               <Route path='search' element={<SearchResult />} />
-              <Route path='sign-up' element={<Auth action="sign-up" />} />
-              <Route path='sign-in' element={<Auth action="sign-in" />} />
+              <Route path='sign-up' element={<Account action="sign-up" />} />
+              <Route path='sign-in' element={<Account action="sign-in" />} />
               <Route path='wishlist' element={<Wishlist />} />
               <Route path='cart' element={<Cart />} />
               <Route path='details/:productId' element={<ProductDeatils />} />
