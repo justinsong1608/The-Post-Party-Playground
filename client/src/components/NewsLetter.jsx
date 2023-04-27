@@ -6,7 +6,7 @@ export default function NewsLetter() {
     <form className="d-flex">
       <div className="input-group center">
         <input className="form-control-md input" type="email" placeholder="Email" aria-label="Email" size={20} />
-        <button className="btn btn-primary" type="submit"><FaMailchimp size={20} /></button>
+        <button className="btn btn-primary" type="submit"><FaMailchimp size={25} /></button>
       </div>
     </form>
   );

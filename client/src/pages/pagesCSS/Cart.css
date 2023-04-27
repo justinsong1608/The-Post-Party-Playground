@@ -24,3 +24,8 @@ body {
 .checkout-button {
   width: 80%;
 }
+
+.empty-cart {
+  font-size: 2rem;
+  height: 50vh;
+}

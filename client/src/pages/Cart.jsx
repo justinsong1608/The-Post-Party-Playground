@@ -1,6 +1,6 @@
 import './pagesCSS/Cart.css';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { removeFromCart } from '../lib/cartApi';
 import totalPrice from '../lib/checkout';
 import { totalQuantity } from '../lib/checkout';
@@ -11,6 +11,7 @@ export default function Cart() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function readCart() {
@@ -35,6 +36,10 @@ export default function Cart() {
   function emptyCart() {
     products.map(product => removeFromCart(product));
     setProducts();
+  }
+
+  function checkout() {
+    navigate('/checkout', { state: products });
   }
 
   if (isLoading) return (
@@ -64,6 +69,7 @@ export default function Cart() {
               <CartProducts product={product} update={updateCart} />
             </div>
           ))}
+          {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
         </div>
         <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
           <div className="checkout-blue p-3 text-center">
@@ -72,7 +78,7 @@ export default function Cart() {
             <hr />
             <div className="d-flex flex-column justify-content-center align-items-center">
               <button className="checkout-button btn btn-danger mb-3" onClick={emptyCart}>Empty Cart</button>
-              <button className="checkout-button btn btn-success">Checkout</button>
+              <button className="checkout-button btn btn-success" onClick={checkout}>Checkout</button>
             </div>
           </div>
         </div>

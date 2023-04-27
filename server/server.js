@@ -294,6 +294,56 @@ app.get('/api/account', async (req, res, next) => {
   }
 });
 
+app.post('/api/checkout', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const { total, status = 'pending' } = req.body;
+    const date = new Date();
+    if (!total) {
+      throw new ClientError(400, 'total is a required field!');
+    }
+    const sql1 = `
+      INSERT INTO "orders" ("customerId", "total", "status", "createdAt")
+          VALUES ($1, $2, $3, $4)
+      RETURNING *
+    `;
+    const params1 = [customerId, total, status, date];
+    const result1 = await db.query(sql1, params1);
+    const [order] = result1.rows;
+
+    const sql2 = `
+    INSERT INTO "orderContents" ("orderId", "name", "price", "description", "minPlayers", "maxPlayers", "imageUrl", "primaryPublisher", "primaryDesigner")
+      SELECT "o"."orderId",
+             "p"."name",
+             "p"."price",
+             "p"."description",
+             "p"."minPlayers",
+             "p"."maxPlayers",
+             "p"."imageUrl",
+             "p"."primaryPublisher",
+             "p"."primaryDesigner"
+        FROM "products" as "p"
+        JOIN "cart" USING ("productId")
+        JOIN "orders" as "o" USING ("customerId")
+      WHERE "o"."orderId" = $1
+    `;
+    const params2 = [order.orderId];
+    const result2 = await db.query(sql2, params2);
+    const orderContents = result2.rows;
+
+    const sql3 = `
+      DELETE
+        FROM "cart"
+        WHERE "customerId" = $1
+    `;
+    const params3 = [customerId];
+    const result3 = await db.query(sql3, params3);
+    res.json({ order, orderContents, result3 });
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

@@ -8,7 +8,13 @@
 
 .butcherman-link {
   font-family: 'Butcherman', cursive;
-  font-size: .9rem;
+  font-size: 1.2rem !important;
+}
+
+.butcherman-link-red {
+  font-family: 'Butcherman', cursive;
+  font-size: 1.2rem !important;
+  color: red;
 }
 
 .butcherman-1 {

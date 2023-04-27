@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import AppContext from './components/AppContext';
 import jwtDecode from 'jwt-decode';
 import SearchResult from './pages/SearchResult';
+import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 
 const tokenKey = 'react-jwt';
 
@@ -55,6 +57,8 @@ function App() {
               <Route path='wishlist' element={<Wishlist />} />
               <Route path='cart' element={<Cart />} />
               <Route path='details/:productId' element={<ProductDeatils />} />
+              <Route path='checkout' element={<Checkout />} />
+              <Route path='orders' element={<Orders />} />
             </Route>
           </Routes>
         </div>
