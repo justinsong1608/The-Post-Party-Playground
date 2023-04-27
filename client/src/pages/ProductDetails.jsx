@@ -1,4 +1,4 @@
-import './ProductDetails.css';
+import './pagesCSS/ProductDetails.css';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi';
@@ -11,9 +11,9 @@ import AddToCartForm from '../components/AddToCartForm';
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadProduct(productId) {

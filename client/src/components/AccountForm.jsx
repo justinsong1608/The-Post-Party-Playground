@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpOrIn } from '../lib/accountApi';
-import './AccountForm.css';
+import './componentsCSS/AccountForm.css';
 
 export default function AccountForm({ action, onSignIn }) {
   const navigate = useNavigate();
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   async function handleSubmitSignIn(event) {
     event.preventDefault();

@@ -1,6 +1,6 @@
+import './pagesCSS/SearchResult.css';
 import Product from "../components/Product";
 import { useLocation } from 'react-router-dom';
-import './SearchResult.css';
 
 
 export default function SearchResult() {

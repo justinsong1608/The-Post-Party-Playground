@@ -1,16 +1,17 @@
-import './Cart.css';
+import './pagesCSS/Cart.css';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { GiTabletopPlayers } from 'react-icons/gi'
+import { Link, useNavigate } from 'react-router-dom';
 import { removeFromCart } from '../lib/cartApi';
 import totalPrice from '../lib/checkout';
 import { totalQuantity } from '../lib/checkout';
 import { getCart } from '../lib/cartApi';
+import CartProducts from '../components/CartProducts';
 
 export default function Cart() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function readCart() {
@@ -35,6 +36,10 @@ export default function Cart() {
   function emptyCart() {
     products.map(product => removeFromCart(product));
     setProducts();
+  }
+
+  function checkout() {
+    navigate('/checkout', { state: products });
   }
 
   if (isLoading) return (
@@ -64,6 +69,7 @@ export default function Cart() {
               <CartProducts product={product} update={updateCart} />
             </div>
           ))}
+          {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
         </div>
         <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
           <div className="checkout-blue p-3 text-center">
@@ -72,42 +78,7 @@ export default function Cart() {
             <hr />
             <div className="d-flex flex-column justify-content-center align-items-center">
               <button className="checkout-button btn btn-danger mb-3" onClick={emptyCart}>Empty Cart</button>
-              <button className="checkout-button btn btn-success">Checkout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CartProducts({ product, update }) {
-  const { name, price, description, minPlayers, maxPlayers, imageUrl, quantity, cartId } = product;
-
-  function handleRemoveProduct(event) {
-    event.preventDefault();
-    const removeProduct = {
-      cartId
-    };
-    removeFromCart(removeProduct);
-    update(cartId)
-  };
-
-  return (
-    <div className="container">
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <div className="row mb-4">
-            <div className="col-12 col-md-5 mb-3 mb-md-0">
-              <img src={imageUrl} alt={name} className="cartImage img-fluid mx-auto" />
-            </div>
-            <div className="col-12 col-md-7">
-              <h2>{name}</h2>
-              <h5 className="text-secondary">${price}</h5>
-              <p className="description card-text text-truncate">{description}</p>
-              <h6 className="description card-text"><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h6>
-              <p>{`Quantity: ${quantity}`}</p>
-              <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleRemoveProduct}>Remove from cart</button>
+              <button className="checkout-button btn btn-success" onClick={checkout}>Checkout</button>
             </div>
           </div>
         </div>

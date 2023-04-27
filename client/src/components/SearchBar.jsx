@@ -1,7 +1,7 @@
 import { BsSearch } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './SearchBar.css';
+import './componentsCSS/SearchBar.css';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,8 +16,8 @@ export default function SearchBar() {
         const message = await res.text(res.body);
         throw new Error(`${message.substring(10, message.length - 2)}`);
       }
-      const data = await res.json();
-      navigate('/search', { state: data });
+      const searchedProduct = await res.json();
+      navigate('/search', { state: searchedProduct });
       setSearchTerm('');
       setDropDown([]);
     } catch (err) {
@@ -28,10 +28,14 @@ export default function SearchBar() {
   async function getDropDown(query) {
     try {
       const res = await fetch(`/api/search?term=${query}`);
-      const data = await res.json();
-      setDropDown(data);
+      if (!res.ok) {
+        setDropDown([]);
+        throw new Error('Not Found!');
+      }
+      const dropDownProducts = await res.json();
+      setDropDown(dropDownProducts);
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
     }
   }
 

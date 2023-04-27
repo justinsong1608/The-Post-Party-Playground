@@ -1,5 +1,5 @@
 body {
-  background-image: url(../../public/clouds.jpeg);
+  background-image: url(../../../public/clouds.jpeg);
 }
 
 .cartImage {
@@ -23,4 +23,9 @@ body {
 
 .checkout-button {
   width: 80%;
+}
+
+.empty-cart {
+  font-size: 2rem;
+  height: 50vh;
 }

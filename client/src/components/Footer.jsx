@@ -1,4 +1,4 @@
-import './Footer.css';
+import './componentsCSS/Footer.css';
 import { Link } from 'react-router-dom';
 import { FiTwitter } from 'react-icons/fi';
 import { BsFacebook, BsInstagram, BsLinkedin, BsGithub } from 'react-icons/bs';

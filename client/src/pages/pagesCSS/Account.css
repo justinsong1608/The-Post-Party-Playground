@@ -1,9 +1,5 @@
-.blue {
-  background-color: #E2F3FF;
-}
-
-.butcherman-title {
-  font-size: 1.5rem;
+body {
+  background-image: url(../../../public/clouds.jpeg);
 }
 
 .butcherman-link {
@@ -46,17 +42,6 @@
   color: #EE82EE;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
-}
-
-.top-overlay {
-  z-index: 10;
+.blue {
   background-color: #E2F3FF;
 }
