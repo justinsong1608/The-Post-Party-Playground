@@ -312,7 +312,7 @@ app.post('/api/checkout', async (req, res, next) => {
     const [order] = result1.rows;
 
     const sql2 = `
-    INSERT INTO "orderContents" ("orderId", "name", "price", "description", "minPlayers", "maxPlayers", "imageUrl", "primaryPublisher", "primaryDesigner")
+    INSERT INTO "orderContents" ("orderId", "name", "price", "description", "minPlayers", "maxPlayers", "imageUrl", "primaryPublisher", "primaryDesigner", "quantity")
       SELECT "o"."orderId",
              "p"."name",
              "p"."price",
@@ -321,9 +321,10 @@ app.post('/api/checkout', async (req, res, next) => {
              "p"."maxPlayers",
              "p"."imageUrl",
              "p"."primaryPublisher",
-             "p"."primaryDesigner"
+             "p"."primaryDesigner",
+             "c"."quantity"
         FROM "products" as "p"
-        JOIN "cart" USING ("productId")
+        JOIN "cart" as "c" USING ("productId")
         JOIN "orders" as "o" USING ("customerId")
       WHERE "o"."orderId" = $1
     `;

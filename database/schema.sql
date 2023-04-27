@@ -102,6 +102,7 @@ CREATE TABLE "public"."orderContents" (
 	"imageUrl"           TEXT        NOT NULL,
 	"primaryPublisher"   TEXT        NOT NULL,
 	"primaryDesigner"    TEXT        NOT NULL,
+  "quantity"           int         NOT NULL,
 	CONSTRAINT "orderContents_pk" PRIMARY KEY ("orderContentsId")
 ) WITH (
   OIDS=FALSE
