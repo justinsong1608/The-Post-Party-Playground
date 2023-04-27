@@ -1,5 +1,5 @@
 import { FaMailchimp } from 'react-icons/fa';
-import './NewsLetter.css';
+import './componentsCSS/NewsLetter.css';
 
 export default function NewsLetter() {
   return (

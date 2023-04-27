@@ -1,10 +1,10 @@
 import { BsSearch } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './SearchBar.css';
+import './componentsCSS/SearchBar.css';
 
 export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const [dropDown, setDropDown] = useState([]);
   const navigate = useNavigate();
 

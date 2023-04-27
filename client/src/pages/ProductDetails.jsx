@@ -1,4 +1,4 @@
-import './ProductDetails.css';
+import './pagesCSS/ProductDetails.css';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi';

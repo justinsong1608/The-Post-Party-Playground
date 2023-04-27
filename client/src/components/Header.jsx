@@ -1,4 +1,4 @@
-import './Header.css';
+import './componentsCSS/Header.css';
 import { Link, Outlet } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { FaUserAstronaut, FaSignOutAlt } from 'react-icons/fa';

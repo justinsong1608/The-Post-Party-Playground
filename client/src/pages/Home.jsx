@@ -1,4 +1,4 @@
-import './Home.css';
+import './pagesCSS/Home.css';
 import Carousel from '../components/Carousel';
 import { Link } from 'react-router-dom';
 import NewsLetter from '../components/NewsLetter';

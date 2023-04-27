@@ -1,4 +1,4 @@
-import './Account.css';
+import './pagesCSS/Account.css';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AccountForm from '../components/AccountForm';

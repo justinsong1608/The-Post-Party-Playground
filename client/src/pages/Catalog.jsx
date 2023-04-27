@@ -1,4 +1,4 @@
-import './Catalog.css';
+import './pagesCSS/Catalog.css';
 import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import Product from '../components/Product';
