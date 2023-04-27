@@ -270,6 +270,30 @@ app.patch('/api/cart', async (req, res, next) => {
   }
 });
 
+// Gets account info //
+app.get('/api/account', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const sql = `
+      SELECT "firstName",
+             "lastName",
+             "email",
+             "address",
+             "state",
+             "city",
+             "zipCode"
+         FROM "customerAccounts"
+        WHERE "customerId" = $1
+    `;
+    const params = [customerId];
+    const result = await db.query(sql, params);
+    const [info] = result.rows;
+    res.status(200).json(info);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
