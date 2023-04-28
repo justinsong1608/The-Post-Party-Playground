@@ -33,9 +33,9 @@ export default function Header() {
           <div id="navbarSupportedContent" className={`collapse navbar-collapse ${isCollapsed ? 'hide' : 'show'}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
-                <h7 className="nav-link dropdown-toggle butcherman-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <h6 className="nav-link dropdown-toggle butcherman-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <FaUserAstronaut size={33} />{user ? user.username : 'Account'}
-                </h7>
+                </h6>
                 <ul className="dropdown-menu">
                   <li>
                     <Link to='/orders' className="nav-link text-nowrap">
