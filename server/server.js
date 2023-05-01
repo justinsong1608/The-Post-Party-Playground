@@ -282,7 +282,7 @@ app.get('/api/account', async (req, res, next) => {
              "state",
              "city",
              "zipCode"
-         FROM "customerAccounts"
+        FROM "customerAccounts"
         WHERE "customerId" = $1
     `;
     const params = [customerId];
@@ -340,6 +340,23 @@ app.post('/api/checkout', async (req, res, next) => {
     const params3 = [customerId];
     const result3 = await db.query(sql3, params3);
     res.json({ order, orderContents, result3 });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/orders', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const sql = `
+    SELECT *
+      FROM "orders"
+      WHERE "customerId" = $1
+      ORDER BY "orderId" DESC
+  `;
+    const params = [customerId];
+    const result = await db.query(sql, params);
+    res.status(200).json(result.rows);
   } catch (err) {
     next(err);
   }
