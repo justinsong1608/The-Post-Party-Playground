@@ -39,9 +39,9 @@ export default function SearchBar() {
     }
   }
 
-  function showDropDown(event) {
+  async function showDropDown(event) {
     const query = event.target.value;
-    getDropDown(query);
+    await getDropDown(query);
   }
 
   function handleSelectDropDown(productId) {

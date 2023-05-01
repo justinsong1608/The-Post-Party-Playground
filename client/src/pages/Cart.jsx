@@ -35,7 +35,7 @@ export default function Cart() {
 
   function emptyCart() {
     products.map(product => removeFromCart(product));
-    setProducts();
+    setProducts([]);
   }
 
   function checkout() {
