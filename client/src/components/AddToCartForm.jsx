@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCart, updateQuantity } from '../lib/cartApi';
 
 export default function AddToCartForm() {
-  const { productId } = useParams();
+  const { productId } = useParams(); // Product details page has the productId as the param //
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -13,11 +13,11 @@ export default function AddToCartForm() {
   async function handleAddProduct(event) {
     event.preventDefault();
     try {
-      const product = {
+      const product = { // Object that I am sending in the body of the request //
         productId,
         quantity
       };
-      const cartProducts = await getCart();
+      const cartProducts = await getCart(); //
       const findProductInCart = cartProducts.filter(item => item.productId === Number(product.productId));
       if (findProductInCart.length === 0) {
         await addToCart(product);
