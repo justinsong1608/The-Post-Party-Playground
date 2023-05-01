@@ -362,6 +362,24 @@ app.get('/api/orders', async (req, res, next) => {
   }
 });
 
+app.get('/api/orderContents', async (req, res, next) => {
+  try {
+    const { orderId } = req.body;
+    if (!orderId) {
+      throw new ClientError(400, 'orderId is a required field!');
+    }
+    const sql = `
+      SELECT *
+        FROM "orderContents"
+        WHERE "orderId" = $1
+    `;
+    const params = [orderId];
+    const result = await db.query(sql, params);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
