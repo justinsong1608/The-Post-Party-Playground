@@ -369,7 +369,10 @@ app.get('/api/orderContents', async (req, res, next) => {
       throw new ClientError(400, 'orderId is a required field!');
     }
     const sql = `
-      SELECT *
+      SELECT "name",
+             "price",
+             "imageUrl",
+             "quantity"
         FROM "orderContents"
         WHERE "orderId" = $1
     `;
