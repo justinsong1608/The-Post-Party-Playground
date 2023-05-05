@@ -1,11 +1,14 @@
+import './pagesCSS/Orders.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import getOrders from '../lib/ordersApi';
 import { getOrderContents } from '../lib/ordersApi';
+import getAccount from '../lib/checkoutApi';
 
 export default function Orders() {
   const [orders, setOrders ] = useState([]);
   const [orderContents, setOrderContents ] = useState([]);
+  const [account, setAccount] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,6 +17,8 @@ export default function Orders() {
       try {
         const order = await getOrders();
         setOrders(order);
+        const accountInfo = await getAccount();
+        setAccount(accountInfo);
         // const orderProduct = await getOrderContents();
         // setOrderContents(orderProduct);
       } catch (err) {
@@ -47,26 +52,52 @@ export default function Orders() {
           </div>
         </div>
       <div className="accordion" id="accordionExample">
-        {/* <Accordion /> */}
+        {orders?.map((order) => (
+          <Accordion order={order} account={account} key={order.orderId} />
+        ))}
       </div>
     </div>
   )
 }
 
-function Accordion({ order, orderContent }){
+function Accordion({ order, account }){
+  const { firstName, lastName, address, city, state, zipCode, email } = account;
   const { orderId, total, status, createdAt } = order;
-  const { name, price, imageUrl, quantity } = orderContent;
+  // const { name, price, imageUrl, quantity } = orderContent;
+
   return (
     <div className="accordion-item">
-    <h2 className="accordion-header" id="headingOne">
-      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
+    <h2 className="accordion-header">
+      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#" + orderId} aria-expanded="false">
+        Order #{orderId}
+        <span className="date"> Ordered Date: {createdAt.substring(0, 10)}</span>
       </button>
     </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div className="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+    <div id={orderId} className="accordion-collapse collapse">
+      <div className="accordion-body row">
+        <div className="col-md-6 pt-4 info">
+          <p>Order Status: <span className="pending">{status}</span></p>
+          <p>Total Price: <span className="complete">${total}</span></p>
+        </div>
+        <div className="col-md-6 text-end info">
+          <p>{firstName} {lastName}</p>
+          <p>{email}</p>
+          <p>{address}</p>
+          <p>{city}, {state} {zipCode}</p>
+        </div>
+        <div className="col-12">
+          hello
+        </div>
       </div>
     </div>
-  </div>)
+  </div>
+  );
 }
+
+{/* <li className="list-group-item d-flex justify-content-between lh-condensed">
+  <div>
+    <h6 className="my-0">{productName}</h6>
+    <small className="text-muted">{`Quantity: ${productQuantity}`}</small>
+  </div>
+  <span className="text-muted">{`$${price * productQuantity / 100}`}</span>
+</li> */}

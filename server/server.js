@@ -297,7 +297,7 @@ app.get('/api/account', async (req, res, next) => {
 app.post('/api/checkout', async (req, res, next) => {
   try {
     const { customerId } = req.user;
-    const { total, status = 'pending' } = req.body;
+    const { total, status = 'Pending' } = req.body;
     const date = new Date();
     if (!total) {
       throw new ClientError(400, 'total is a required field!');
@@ -348,6 +348,9 @@ app.post('/api/checkout', async (req, res, next) => {
 app.get('/api/orders', async (req, res, next) => {
   try {
     const { customerId } = req.user;
+    if (!customerId) {
+      throw new ClientError(400, 'customerId is a required field!');
+    }
     const sql = `
     SELECT *
       FROM "orders"
@@ -364,19 +367,22 @@ app.get('/api/orders', async (req, res, next) => {
 
 app.get('/api/orderContents', async (req, res, next) => {
   try {
-    const { orderId } = req.body;
-    if (!orderId) {
-      throw new ClientError(400, 'orderId is a required field!');
+    const { customerId } = req.user;
+    if (!customerId) {
+      throw new ClientError(400, 'customerId is a required field!');
     }
     const sql = `
-      SELECT "name",
-             "price",
-             "imageUrl",
-             "quantity"
-        FROM "orderContents"
-        WHERE "orderId" = $1
+      SELECT "c"."name",
+             "c"."price",
+             "c"."imageUrl",
+             "c"."quantity",
+             "c"."orderId",
+             "o"."customerId"
+        FROM "orderContents" as "c"
+        JOIN "orders" as "o" USING ("orderId")
+        WHERE "customerId" = $1
     `;
-    const params = [orderId];
+    const params = [customerId];
     const result = await db.query(sql, params);
     res.status(200).json(result.rows);
   } catch (err) {

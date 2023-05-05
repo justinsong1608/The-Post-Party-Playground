@@ -1,31 +1,30 @@
-export default async function getOrders() {
+export default async function getAccount() {
   const token = localStorage.getItem('react-jwt');
   if (!token) {
     throw new Error('Please log in or create an account to have access to adding items to your Cart!')
   }
-  const res = await fetch('/api/orders', {
+  const res = await fetch('/api/account', {
     headers: {
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
     }
   });
   if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
-  const orders = await res.json();
-  return orders;
+  const info = await res.json();
+  return info;
 }
 
-export async function getOrderContents(contents) {
+export async function confirmation(order) {
   const token = localStorage.getItem('react-jwt');
   if (!token) {
     throw new Error('Please log in or create an account to have access to adding items to your Cart!')
   }
-  const res = await fetch('/api/orderContents', {
+  const res = await fetch('/api/checkout', {
+    method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-type': 'application/json'
     },
-    body: JSON.stringify(contents)
+    body: JSON.stringify(order)
   });
   if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
-  const orderContents = await res.json();
-  return orderContents;
 }
