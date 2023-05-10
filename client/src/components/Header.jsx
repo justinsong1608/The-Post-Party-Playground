@@ -2,7 +2,6 @@ import './componentsCSS/Header.css';
 import { Link, Outlet } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { FaUserAstronaut } from 'react-icons/fa';
-import { AiFillHeart } from 'react-icons/ai';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { CgGames } from 'react-icons/cg';
 import ColorTitle from './ColorTitle';
@@ -62,12 +61,6 @@ export default function Header() {
                   <CgGames size={33} />
                   <span className="d-md-inline ms-1 fw-semibold butcherman-link">Catalog</span>
                   </Link>
-              </li>
-              <li className="nav-item">
-                <Link to='/wishlist' className="nav-link text-nowrap" onClick={handleLinkClick}>
-                  <AiFillHeart size={33} style={{ color: 'red' }} />
-                  <span className="d-md-inline ms-1 fw-semibold butcherman-link">Wishlist</span>
-                </Link>
               </li>
               <li className="nav-item">
                 <Link to='/cart' className="nav-link text-nowrap" onClick={handleLinkClick}>

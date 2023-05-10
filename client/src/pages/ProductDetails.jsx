@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi';
 import { TbArrowBackUp } from 'react-icons/tb';
 import { RiStarSLine } from 'react-icons/ri';
-import { AiOutlineHeart } from 'react-icons/ai';
 import { BsFillCheckCircleFill, BsTruck } from 'react-icons/bs';
 import { SlSocialDropbox } from 'react-icons/sl';
 import AddToCartForm from '../components/AddToCartForm';
@@ -73,7 +72,6 @@ export default function ProductDetails() {
             <h5><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h5>
             <AddToCartForm />
             <hr />
-            <h5><AiOutlineHeart className="red mx-1" size={40} />Add to Wishlist</h5>
             <h5 className="mt-3"><BsFillCheckCircleFill className="mx-1 green" size={40} />Free 30 Day Returns</h5>
             <h5 className="mt-3"><BsTruck className="mx-1" size={40} />Free Delivery</h5>
             <h5 className="mt-3"><SlSocialDropbox className="mx-1" size={40} />Sold and Shipped by The-Post-Party-Playground</h5>

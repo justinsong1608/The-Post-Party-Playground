@@ -53,17 +53,6 @@ CREATE TABLE "public"."cart" (
 
 
 
-CREATE TABLE "public"."wishlist" (
-	"wishlistId"         serial,
-	"customerId"         int         NOT NULL,
-	"productId"          int         NOT NULL,
-	CONSTRAINT "wishlist_pk" PRIMARY KEY ("wishlistId")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "public"."adminAccounts" (
 	"adminId"            serial,
 	"firstName"          TEXT        NOT NULL,
@@ -122,10 +111,6 @@ CREATE TABLE "public"."featuredProducts" (
 
 ALTER TABLE "cart" ADD CONSTRAINT "cart_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
 ALTER TABLE "cart" ADD CONSTRAINT "cart_fk1" FOREIGN KEY ("productId") REFERENCES "products"("productId");
-
-ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
-ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_fk1" FOREIGN KEY ("productId") REFERENCES "products"("productId");
-
 
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("customerId") REFERENCES "customerAccounts"("customerId");
 
