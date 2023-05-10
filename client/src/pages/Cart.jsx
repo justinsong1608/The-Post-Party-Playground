@@ -92,7 +92,7 @@ export default function Cart() {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="modalLabel">Empty your cart?</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body text-center">
               <p>Please don't empty the cart! Buy my board games!</p>
