@@ -1,12 +1,11 @@
 import './pagesCSS/Home.css';
 import Carousel from '../components/Carousel';
 import { Link } from 'react-router-dom';
-import NewsLetter from '../components/NewsLetter';
 
 export default function Home() {
 
   return (
-    <div className="container">
+    <div className="container mb-5">
       <div className="row">
         <div className="col-sm-6 mt-4">
           <h5 className="title">The Post Party PlayGround</h5>
@@ -18,13 +17,6 @@ export default function Home() {
         </div>
         <div className="col-sm-6 mt-4">
           <Carousel />
-        </div>
-      </div>
-      <div className="row flex">
-        <div className="col-sm-12 mt-3 mb-5 center newsletter-background p-3">
-          <h2 className="title">NewsLetter</h2>
-          <h4>Subscribe to our newsletter!</h4>
-          <NewsLetter />
         </div>
       </div>
     </div>
