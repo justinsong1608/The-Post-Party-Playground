@@ -282,7 +282,7 @@ app.get('/api/account', async (req, res, next) => {
              "state",
              "city",
              "zipCode"
-         FROM "customerAccounts"
+        FROM "customerAccounts"
         WHERE "customerId" = $1
     `;
     const params = [customerId];
@@ -297,7 +297,7 @@ app.get('/api/account', async (req, res, next) => {
 app.post('/api/checkout', async (req, res, next) => {
   try {
     const { customerId } = req.user;
-    const { total, status = 'pending' } = req.body;
+    const { total, status = 'Pending' } = req.body;
     const date = new Date();
     if (!total) {
       throw new ClientError(400, 'total is a required field!');
@@ -345,6 +345,52 @@ app.post('/api/checkout', async (req, res, next) => {
   }
 });
 
+app.get('/api/orders', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    if (!customerId) {
+      throw new ClientError(400, 'customerId is a required field!');
+    }
+    const sql = `
+    SELECT *
+      FROM "orders"
+      WHERE "customerId" = $1
+      ORDER BY "orderId" DESC
+  `;
+    const params = [customerId];
+    const result = await db.query(sql, params);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/orderContents', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    if (!customerId) {
+      throw new ClientError(400, 'customerId is a required field!');
+    }
+    const sql = `
+      SELECT "c"."name",
+             "c"."price",
+             "c"."imageUrl",
+             "c"."quantity",
+             "c"."orderId",
+             "c"."orderContentsId",
+             "o"."customerId"
+        FROM "orderContents" as "c"
+        JOIN "orders" as "o" USING ("orderId")
+        WHERE "customerId" = $1
+        ORDER BY "c"."orderId" DESC
+    `;
+    const params = [customerId];
+    const result = await db.query(sql, params);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
