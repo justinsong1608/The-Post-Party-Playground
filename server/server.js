@@ -377,10 +377,12 @@ app.get('/api/orderContents', async (req, res, next) => {
              "c"."imageUrl",
              "c"."quantity",
              "c"."orderId",
+             "c"."orderContentsId",
              "o"."customerId"
         FROM "orderContents" as "c"
         JOIN "orders" as "o" USING ("orderId")
         WHERE "customerId" = $1
+        ORDER BY "c"."orderId" DESC
     `;
     const params = [customerId];
     const result = await db.query(sql, params);
