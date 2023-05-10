@@ -47,7 +47,6 @@ export default function Footer() {
             <h5 className="text-uppercase butcherman-white">Useful Links</h5>
             <ul className="list-unstyled">
               <li><p><Link to="/sign-in" className="links">Account</Link></p></li>
-              <li><p><Link to="/wishlist" className="links">Wishlist</Link></p></li>
               <li><p><Link to="/cart" className="links">View Cart</Link></p></li>
               <li><p><a href="https://github.com/justinsong1608/The-Post-Party-Playground" className="links">Help</a></p></li>
             </ul>

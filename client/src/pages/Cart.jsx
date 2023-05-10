@@ -56,33 +56,55 @@ export default function Cart() {
     </div>);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <h1 className="mt-4 my-cart-title">Your Cart</h1>
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <h1 className="mt-4 my-cart-title">Your Cart</h1>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-12 col-md-9">
-          {products?.map((product) => (
-            <div key={product.cartId} className="mt-3 mb-5">
-              <CartProducts product={product} update={updateCart} />
-            </div>
-          ))}
-          {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
-        </div>
-        <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
-          <div className="checkout-blue p-3 text-center sticky-top">
-            <h3>Subtotal ({totalQuantity(products)} {totalQuantity(products) === 1 ? 'item' : 'items'}):</h3>
-            <h3>${totalPrice(products)}</h3>
-            <hr />
-            <div className="d-flex flex-column justify-content-center align-items-center">
-              <button className="checkout-button btn btn-danger mb-3" onClick={emptyCart}>Empty Cart</button>
-              <button className="checkout-button btn btn-success" onClick={checkout}>Checkout</button>
+        <div className="row">
+          <div className="col-12 col-md-9">
+            {products?.map((product) => (
+              <div key={product.cartId} className="mt-3 mb-5">
+                <CartProducts product={product} update={updateCart} />
+              </div>
+            ))}
+            {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
+          </div>
+          <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
+            <div className="checkout-blue p-3 text-center sticky-top">
+              <h3>Subtotal ({totalQuantity(products)} {totalQuantity(products) === 1 ? 'item' : 'items'}):</h3>
+              <h3>${totalPrice(products)}</h3>
+              <hr />
+              {products.length > 0 &&
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <button type="button" className="checkout-button btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modal">Empty Cart</button>
+                  <button type="button" className="checkout-button btn btn-success" onClick={checkout}>Checkout</button>
+                </div>
+              }
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="modalLabel">Empty your cart?</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body text-center">
+              <p>Please don't empty the cart! Buy my board games!</p>
+              <img src="https://media.tenor.com/images/746df79a484e4f71d9f7e0519ef18ef5/tenor.png" alt="Donkey Kong Mad" className="mx-auto block" />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn btn-outline-danger" data-bs-dismiss="modal" onClick={emptyCart}>Empty Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
