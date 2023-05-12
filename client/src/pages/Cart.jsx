@@ -73,7 +73,7 @@ export default function Cart() {
             {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
           </div>
           <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
-            <div className="checkout-blue p-3 text-center sticky-top">
+            <div className="checkout-blue p-3 text-center">
               <h3>Subtotal ({totalQuantity(products)} {totalQuantity(products) === 1 ? 'item' : 'items'}):</h3>
               <h3>${totalPrice(products)}</h3>
               <hr />

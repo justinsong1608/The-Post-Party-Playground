@@ -36,12 +36,22 @@ export default function Header() {
                   <FaUserAstronaut size={33} />{user ? user.username : 'Account'}
                 </h6>
                 <ul className="dropdown-menu">
-                  <li>
-                    <Link to='/orders' className="nav-link text-nowrap">
-                      <span className="d-md-inline ms-1 fw-semibold butcherman-link">Orders</span>
-                    </Link>
-                  </li>
-                  <li><hr className="dropdown-divider"></hr></li>
+                  {user &&
+                  <>
+                    <li>
+                      <Link to='/orders' className="nav-link text-nowrap">
+                        <span className="d-md-inline ms-1 fw-semibold butcherman-link">Orders</span>
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider"></hr></li>
+                    <li>
+                      <Link to='/account-info' className="nav-link text-nowrap">
+                        <span className="d-md-inline ms-1 fw-semibold butcherman-link">Account Info</span>
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider"></hr></li>
+                  </>
+                  }
                   <li>
                     {user &&
                       <Link to='/sign-in' className="nav-link text-nowrap" onClick={() => { handleSignOut(); handleLinkClick(); }}>

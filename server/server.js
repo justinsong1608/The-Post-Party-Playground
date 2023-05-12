@@ -281,7 +281,8 @@ app.get('/api/account', async (req, res, next) => {
              "address",
              "state",
              "city",
-             "zipCode"
+             "zipCode",
+             "username"
         FROM "customerAccounts"
         WHERE "customerId" = $1
     `;

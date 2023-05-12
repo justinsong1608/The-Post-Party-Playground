@@ -13,6 +13,7 @@ import jwtDecode from 'jwt-decode';
 import SearchResult from './pages/SearchResult';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import AccountInfo from './pages/AccountInfo';
 
 const tokenKey = 'react-jwt';
 
@@ -57,6 +58,7 @@ function App() {
               <Route path='details/:productId' element={<ProductDeatils />} />
               <Route path='checkout' element={<Checkout />} />
               <Route path='orders' element={<Orders />} />
+              <Route path='account-info' element={<AccountInfo />} />
             </Route>
           </Routes>
         </div>

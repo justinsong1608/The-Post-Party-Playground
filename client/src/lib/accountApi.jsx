@@ -1,10 +1,3 @@
-/**
- * Signs up or signs in depending on the action.
- * @param {string} action Action to take, either 'sign-up' or 'sign-in'
- * @param {string} username The user's username.
- * @param {sting} password The user's password.
- * @returns Promise that resolves to user (sign-up) or `{ token, user }` (sign-in).
- */
 export async function signUpOrIn(action, username, password, firstName, lastName, email, address, state, city, zipCode) {
   const req1 = {
     method: 'POST',

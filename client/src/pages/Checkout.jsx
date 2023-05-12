@@ -55,7 +55,7 @@ export default function Checkout() {
           ))}
         </div>
         <div className="col-12 col-md-3 col-lg-3 mt-3 mb-5">
-          <div className="checkout-blue p-3 text-center sticky-top">
+          <div className="checkout-blue p-3 text-center">
             <h3>Total ({totalQuantity(checkoutProducts)} {totalQuantity(checkoutProducts) === 1 ? 'item' : 'items'}):</h3>
             <h3>${totalPrice(checkoutProducts)}</h3>
             <hr />
