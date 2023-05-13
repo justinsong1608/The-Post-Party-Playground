@@ -17,14 +17,19 @@ export default function AccountInfo() {
     accountInfo();
   }, []);
 
+  function openForm() {
+    console.log("j")
+  }
+
   const { firstName, lastName, address, city, state, zipCode, email, username } = account;
   return (
     <div className="container mt-5 mb-5 p-5 blue-account">
       <div className="row">
-        <div className="col">
-          <h1 className="red-account">Account Info</h1>
-          <hr />
+        <div className="col d-flex justify-content-between align-items-center">
+          <h1 className="red-account">Account</h1>
+          <button className="btn btn-outline-info" type="button" onClick={openForm}>Update</button>
         </div>
+        <hr />
       </div>
 
       <div className="row">

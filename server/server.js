@@ -129,7 +129,7 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING "customerId", "username", "firstName", "lastName", "email", "address", "state", "city", "zipCode"
     `;
-    const params = [firstName, lastName, email, address, state, city, zipCode, username, hashedPassword];
+    const params = [firstName, lastName, email, address, state.toUpperCase(), city, zipCode, username, hashedPassword];
     const result = await db.query(sql, params);
     const [user] = result.rows;
     res.status(201).json(user);

@@ -126,6 +126,7 @@ export default function AccountForm({ action, onSignIn }) {
                   required
                   type="text"
                   name="state"
+                  maxLength={2}
                   className="form-control bg-light" />
               </label>
             </div>
@@ -146,7 +147,7 @@ export default function AccountForm({ action, onSignIn }) {
                 Zip Code:
                 <input
                   required
-                  type="text"
+                  type="number"
                   name="zipCode"
                   className="form-control bg-light" />
               </label>
