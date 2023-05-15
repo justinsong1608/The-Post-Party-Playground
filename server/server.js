@@ -401,20 +401,20 @@ app.patch('/api/updateAccount', async (req, res, next) => {
       throw new ClientError(400, 'customerId is a required field!');
     }
     const sql = `
-      UPDATE "customerAccounts",
+      UPDATE "customerAccounts"
           SET "username" = $1,
-          SET "firstName" = $2,
-          SET "lastName" = $3,
-          SET "email" = $4,
-          SET "address" = $5,
-          SET "state" = $6,
-          SET "city" = $7,
-          SET "zipCode" = $8,
+              "firstName" = $2,
+              "lastName" = $3,
+              "email" = $4,
+              "address" = $5,
+              "state" = $6,
+              "city" = $7,
+              "zipCode" = $8
         WHERE "customerId" = $9
     `;
     const params = [username, firstName, lastName, email, address, state, city, zipCode, customerId];
-    const result = await db.query(sql, params);
-    res.status(202).json(result.rows);
+    await db.query(sql, params);
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }
