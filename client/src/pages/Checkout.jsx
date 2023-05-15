@@ -29,7 +29,8 @@ export default function Checkout() {
   async function confirmOrder() {
     try {
       const order = {
-        total: totalPrice(checkoutProducts)
+        total: totalPrice(checkoutProducts),
+        quantity: totalQuantity(checkoutProducts)
       };
       await confirmation(order);
       navigate('/orders');

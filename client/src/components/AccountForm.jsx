@@ -10,9 +10,8 @@ export default function AccountForm({ action, onSignIn }) {
   async function handleSubmitSignIn(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const { username, password } = Object.fromEntries(formData.entries());
     try {
-      const result = await signUpOrIn(action, username, password);
+      const result = await signUpOrIn(action, formData);
       if (action === 'sign-up') {
         navigate('/sign-in')
       } else if (result.user && result.token) {
@@ -26,9 +25,8 @@ export default function AccountForm({ action, onSignIn }) {
   async function handleSubmitSignUp(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const { username, password, firstName, lastName, email, address, state, city, zipCode } = Object.fromEntries(formData.entries());
     try {
-      const result = await signUpOrIn(action, username, password, firstName, lastName, email, address, state, city, zipCode);
+      const result = await signUpOrIn(action, formData);
       if (action === 'sign-up') {
         navigate('/sign-in')
       } else if (result.user && result.token) {

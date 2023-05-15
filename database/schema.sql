@@ -70,6 +70,7 @@ CREATE TABLE "public"."adminAccounts" (
 CREATE TABLE "public"."orders" (
 	"orderId"            serial,
 	"customerId"         int         NOT NULL,
+  "quantity"           int         NOT NULL,
 	"total"              DECIMAL     NOT NULL,
 	"status"             TEXT        NOT NULL,
 	"createdAt"          TIMESTAMP   NOT NULL,

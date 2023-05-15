@@ -298,17 +298,17 @@ app.get('/api/account', async (req, res, next) => {
 app.post('/api/checkout', async (req, res, next) => {
   try {
     const { customerId } = req.user;
-    const { total, status = 'Pending' } = req.body;
+    const { total, quantity, status = 'Pending' } = req.body;
     const date = new Date();
     if (!total) {
       throw new ClientError(400, 'total is a required field!');
     }
     const sql1 = `
-      INSERT INTO "orders" ("customerId", "total", "status", "createdAt")
-          VALUES ($1, $2, $3, $4)
+      INSERT INTO "orders" ("customerId", "quantity", "total", "status", "createdAt")
+          VALUES ($1, $2, $3, $4, $5)
       RETURNING *
     `;
-    const params1 = [customerId, total, status, date];
+    const params1 = [customerId, quantity, total, status, date];
     const result1 = await db.query(sql1, params1);
     const [order] = result1.rows;
 
@@ -392,6 +392,34 @@ app.get('/api/orderContents', async (req, res, next) => {
     next(err);
   }
 });
+
+app.patch('/api/updateAccount', async (req, res, next) => {
+  try {
+    const { customerId } = req.user;
+    const { username, firstName, lastName, email, address, state, city, zipCode } = req.body;
+    if (!customerId) {
+      throw new ClientError(400, 'customerId is a required field!');
+    }
+    const sql = `
+      UPDATE "customerAccounts",
+          SET "username" = $1,
+          SET "firstName" = $2,
+          SET "lastName" = $3,
+          SET "email" = $4,
+          SET "address" = $5,
+          SET "state" = $6,
+          SET "city" = $7,
+          SET "zipCode" = $8,
+        WHERE "customerId" = $9
+    `;
+    const params = [username, firstName, lastName, email, address, state, city, zipCode, customerId];
+    const result = await db.query(sql, params);
+    res.status(202).json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
