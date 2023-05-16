@@ -264,7 +264,7 @@ app.patch('/api/cart', async (req, res, next) => {
     if (!updated) {
       throw new ClientError(404, 'cartId is not found!');
     }
-    res.status(202).json(updated);
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }

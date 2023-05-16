@@ -87,7 +87,7 @@ export default function Cart() {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div className="modal fade" id="modal" tabIndex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">

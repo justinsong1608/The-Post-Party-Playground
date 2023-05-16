@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
-import Account from './pages/Account.jsx';
+import SignUpOrSignIn from './pages/SignUpOrSignIn.jsx';
 import Cart from './pages/Cart.jsx';
 import ProductDeatils from './pages/ProductDetails';
 import Footer from './components/Footer';
@@ -53,8 +53,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path='catalog' element={<Catalog />} />
               <Route path='search' element={<SearchResult />} />
-              <Route path='sign-up' element={<Account action="sign-up" />} />
-              <Route path='sign-in' element={<Account action="sign-in" />} />
+              <Route path='sign-up' element={<SignUpOrSignIn action="sign-up" />} />
+              <Route path='sign-in' element={<SignUpOrSignIn action="sign-in" />} />
               <Route path='cart' element={<Cart />} />
               <Route path='details/:productId' element={<ProductDeatils />} />
               <Route path='checkout' element={<Checkout />} />

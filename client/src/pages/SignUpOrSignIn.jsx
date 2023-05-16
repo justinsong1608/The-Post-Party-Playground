@@ -1,11 +1,11 @@
-import './pagesCSS/Account.css';
+import './pagesCSS/SignUpOrSignIn.css';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AccountForm from '../components/AccountForm';
+import SignUpOrSignInForm from '../components/SignUpOrSignInForm';
 import AppContext from '../components/AppContext';
 import ColorTitle from  '../components/ColorTitle';
 
-export default function Account({ action }) {
+export default function SignUpOrSignIn({ action }) {
   const navigate = useNavigate();
 
   const { user, handleSignIn } = useContext(AppContext);
@@ -28,7 +28,7 @@ export default function Account({ action }) {
             <p className="text-muted mb-4">{welcomeMessage}</p>
           </header>
           <div className="card p-3 mb-5 blue">
-            <AccountForm
+            <SignUpOrSignInForm
               key={action}
               action={action}
               onSignIn={handleSignIn}/>
