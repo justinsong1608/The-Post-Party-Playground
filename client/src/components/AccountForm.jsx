@@ -147,6 +147,7 @@ export default function AccountForm({ action, onSignIn }) {
                   required
                   type="number"
                   name="zipCode"
+                  maxLength={5}
                   className="form-control bg-light" />
               </label>
             </div>

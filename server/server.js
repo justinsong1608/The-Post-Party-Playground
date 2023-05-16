@@ -414,7 +414,7 @@ app.patch('/api/updateAccount', async (req, res, next) => {
               "zipCode" = $8
         WHERE "customerId" = $9
     `;
-    const params = [username, firstName, lastName, email, address, state, city, zipCode, customerId];
+    const params = [username, firstName, lastName, email, address, state.toUpperCase(), city, zipCode, customerId];
     await db.query(sql, params);
     res.sendStatus(202);
   } catch (err) {

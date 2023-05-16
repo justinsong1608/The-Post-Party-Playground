@@ -156,6 +156,7 @@ export default function AccountInfo() {
                   autoFocus
                   type="text"
                   name="state"
+                  maxLength={2}
                   defaultValue={state}
                   className="form-control bg-light" />}
               </label>
@@ -167,8 +168,9 @@ export default function AccountInfo() {
                 : <input
                   required
                   autoFocus
-                  type="text"
+                  type="number"
                   name="zipCode"
+                  maxLength={5}
                   defaultValue={zipCode}
                   className="form-control bg-light" />}
               </label>
