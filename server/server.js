@@ -249,8 +249,8 @@ app.patch('/api/cart', async (req, res, next) => {
     if (!cartId) {
       throw new ClientError(400, 'cartId is a required field!');
     }
-    if (Number(quantity) > 3) {
-      throw new ClientError(400, 'Total quantity in cart cannot be greater than 3!');
+    if (Number(quantity) > 5) {
+      throw new ClientError(400, 'Total quantity in cart cannot be greater than 5!');
     }
     const sql = `
       UPDATE "cart"

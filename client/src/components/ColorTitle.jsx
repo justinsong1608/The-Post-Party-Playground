@@ -9,7 +9,7 @@ export default function ColorTitle({ word }) {
   let fixedKey = 0; //This is when I add back the spaces. The spaces need keys that are unique.//
   const titleWithColor = title.map((letter, index) => {
     fixedKey++;
-    return (<span key={index} className={`butcherman-${index % 7 + 1}`}>{letter}</span>);
+    return (<span key={index} className={`darumadrop-${index % 7 + 1}`}>{letter}</span>);
   });
 
   // Add spaces back to the title

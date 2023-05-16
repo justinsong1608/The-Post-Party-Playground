@@ -2,14 +2,14 @@
   background-image: linear-gradient(black, lightblue);
 }
 
-.butcherman-white {
-  font-family: 'Butcherman', cursive;
+.darumadrop-white {
+  font-family: 'Darumadrop One', cursive;
   color: white;
   font-size: 1.75rem;
 }
 
-.butcherman-footer-title {
-  font-family: 'Butcherman', cursive;
+.darumadrop-footer-title {
+  font-family: 'Darumadrop One', cursive;
   font-size: 2rem;
   color: red;
 }

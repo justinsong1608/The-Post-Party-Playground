@@ -28,6 +28,11 @@ export default function Cart() {
     readCart();
   }, []);
 
+  async function updateCartTotal() {
+    const cartProducts = await getCart()
+    setProducts(cartProducts);
+  }
+
   function updateCart(cartId) {
     const updatedProducts = products.filter(p => p.cartId !== cartId);
     setProducts(updatedProducts);
@@ -67,7 +72,7 @@ export default function Cart() {
           <div className="col-12 col-md-9">
             {products?.map((product) => (
               <div key={product.cartId} className="mt-3 mb-5">
-                <CartProducts product={product} update={updateCart} />
+                <CartProducts product={product} update={updateCart} updateTotal={updateCartTotal}/>
               </div>
             ))}
             {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
