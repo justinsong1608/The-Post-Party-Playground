@@ -1,6 +1,7 @@
 import getAccount from '../lib/checkoutApi'
 import { useEffect, useState } from 'react';
 import { GrFormClose } from 'react-icons/gr';
+import { updateAccountInfo } from '../lib/accountApi';
 import './pagesCSS/AccountInfo.css';
 
 export default function AccountInfo() {
@@ -23,11 +24,14 @@ export default function AccountInfo() {
   async function handleUpdateAccount(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const { username, password, firstName, lastName, email, address, state, city, zipCode } = Object.fromEntries(formData.entries());
     try {
-
+      await updateAccountInfo(formData);
+      const info = await getAccount();
+      setAccount(info);
     } catch (err) {
       setError(err);
+    } finally {
+      setEdit(false);
     }
   }
 
@@ -41,7 +45,7 @@ export default function AccountInfo() {
             {!edit
               ? <button className="btn btn-outline-info" type="button" onClick={() => setEdit(true)}>Update</button>
               : <div className="d-flex">
-                  <button className="btn btn-outline-success" type="submit">Confirm</button>
+                <button className="btn btn-outline-success" type="submit">Confirm</button>
                   <button className="btn btn-link" type="button" onClick={() => setEdit(false)}><GrFormClose size={24} /></button>
                 </div>}
           </div>

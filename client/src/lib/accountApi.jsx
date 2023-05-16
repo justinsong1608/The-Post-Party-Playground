@@ -38,7 +38,7 @@ export async function updateAccountInfo(formData) {
       'Authorization': `Bearer ${token}`,
       'Content-type': 'application/json'
     },
-    body: JSON.stringify({ username, firstName, lastName, email, address, state, city, zipCode })
+    body: JSON.stringify({ username, firstName, lastName, email, address, state, city, zipCode }),
   });
   if (!res.ok) {
     const message = await res.text(res.body);
