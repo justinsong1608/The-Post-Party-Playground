@@ -304,11 +304,13 @@ app.post('/api/checkout', async (req, res, next) => {
       throw new ClientError(400, 'total is a required field!');
     }
     const sql1 = `
-      INSERT INTO "orders" ("customerId", "quantity", "total", "status", "createdAt")
-          VALUES ($1, $2, $3, $4, $5)
-      RETURNING *
+       INSERT INTO "orders" ("quantity", "total", "status", "createdAt", "customerId", "firstName", "lastName", "email",   "address", "state", "city", "zipCode")
+            SELECT $1, $2, $3, $4, $5, "c"."firstName", "c"."lastName", "c"."email", "c"."address", "c"."state", "c"."city", "c"."zipCode"
+          FROM "customerAccounts" as "c"
+          WHERE "c"."customerId" = $5
+        RETURNING *
     `;
-    const params1 = [customerId, quantity, total, status, date];
+    const params1 = [quantity, total, status, date, customerId];
     const result1 = await db.query(sql1, params1);
     const [order] = result1.rows;
 
