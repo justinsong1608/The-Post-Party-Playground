@@ -14,6 +14,7 @@ import SearchResult from './pages/SearchResult';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import AccountInfo from './pages/AccountInfo';
+import { NotFound } from './pages/NotFound';
 
 const tokenKey = 'react-jwt';
 
@@ -59,6 +60,7 @@ function App() {
               <Route path='checkout' element={<Checkout />} />
               <Route path='orders' element={<Orders />} />
               <Route path='account-info' element={<AccountInfo />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </div>
