@@ -69,10 +69,18 @@ CREATE TABLE "public"."adminAccounts" (
 
 CREATE TABLE "public"."orders" (
 	"orderId"            serial,
-	"customerId"         int         NOT NULL,
+  "quantity"           int         NOT NULL,
 	"total"              DECIMAL     NOT NULL,
 	"status"             TEXT        NOT NULL,
 	"createdAt"          TIMESTAMP   NOT NULL,
+  "customerId"         int         NOT NULL,
+  "firstName"          TEXT        NOT NULL,
+	"lastName"           TEXT        NOT NULL,
+	"email"              TEXT        NOT NULL,
+	"address"            TEXT        NOT NULL,
+	"state"              TEXT        NOT NULL,
+	"city"               TEXT        NOT NULL,
+	"zipCode"            TEXT        NOT NULL,
 	CONSTRAINT "orders_pk" PRIMARY KEY ("orderId")
 ) WITH (
   OIDS=FALSE

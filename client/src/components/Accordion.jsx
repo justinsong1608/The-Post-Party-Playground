@@ -1,8 +1,7 @@
 import OrderList from "./OrderList";
 
-export default function Accordion({ order, account, orderContentsByOrderId }) {
-  const { firstName, lastName, address, city, state, zipCode, email } = account;
-  const { orderId, total, status, createdAt } = order;
+export default function Accordion({ order, orderContentsByOrderId }) {
+  const { orderId, total, status, createdAt, firstName, lastName, address, city, state, zipCode, email } = order;
 
   return (
     <div className="accordion-item">

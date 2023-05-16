@@ -3,13 +3,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import getOrders from '../lib/ordersApi';
 import { getOrderContents } from '../lib/ordersApi';
-import getAccount from '../lib/checkoutApi';
 import Accordion from '../components/Accordion';
 
 export default function Orders() {
   const [orders, setOrders ] = useState([]);
   const [orderContents, setOrderContents ] = useState([]);
-  const [account, setAccount] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,8 +16,6 @@ export default function Orders() {
       try {
         const order = await getOrders();
         setOrders(order);
-        const accountInfo = await getAccount();
-        setAccount(accountInfo);
         const orderProducts = await getOrderContents();
         setOrderContents(orderProducts);
       } catch (err) {
@@ -59,7 +55,7 @@ export default function Orders() {
         </div>
       <div className="accordion" id="accordionFlushExample">
         {orders?.map((order) => (
-          <Accordion order={order} account={account} key={order.orderId} orderContentsByOrderId={getProductsByOrderId(order.orderId)} />
+          <Accordion order={order} key={order.orderId} orderContentsByOrderId={getProductsByOrderId(order.orderId)} />
         ))}
         {orders.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Go Order Some Board Games!</div>}
       </div>
