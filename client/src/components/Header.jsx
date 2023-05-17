@@ -31,9 +31,9 @@ export default function Header() {
           </button>
           <div id="navbarSupportedContent" className={`collapse navbar-collapse ${isCollapsed ? 'hide' : 'show'}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown mt-1">
                 <h6 className="nav-link dropdown-toggle darumadrop-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <FaUserAstronaut size={33} />{user ? user.username : 'Account'}
+                  <FaUserAstronaut size={33}/>{user ? user.username : 'Account'}
                 </h6>
                 <ul className="dropdown-menu">
                   {user &&

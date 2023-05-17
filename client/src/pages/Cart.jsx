@@ -54,7 +54,7 @@ export default function Cart() {
   );
 
   if (error) return (
-    <div className="d-flex justify-content-center align-items-center mb-5" style={{ height: "50vh" }}>
+    <div className="d-flex justify-content-center align-items-center mb-5 deny-access" style={{ height: "50vh" }}>
       <span className="text-center">
         Cannot access Cart: {error.message} <Link to='/sign-in'>Account</Link>
       </span>
