@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container-fluid text-center text-md-left">
         <div className="row">
           <div className="col-md-6 mt-md-0 mt-3">
-            <h5 className="text-uppercase butcherman-footer-title">Social Links</h5>
+            <h5 className="text-uppercase darumadrop-footer-title">Social Links</h5>
             <div className="row justify-content-center">
               <div className="col-auto">
                 <a className="white" target="_blank" href="http://www.facebook.com" rel="noreferrer"><BsFacebook size={25}/></a>
@@ -34,7 +34,7 @@ export default function Footer() {
           <hr className="clearfix w-100 d-md-none pb-0" />
 
           <div className="col-md-3 mb-md-0 mb-3">
-            <h5 className="text-uppercase butcherman-white">Contact</h5>
+            <h5 className="text-uppercase darumadrop-white">Contact</h5>
             <ul className="list-unstyled white">
               <li><p><FaWarehouse className='mx-2'/> Irvine, CA 92602, USA</p></li>
               <li><p><FaMailBulk className='mx-2' />info@example.com</p></li>
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
 
           <div className="col-md-3 mb-md-0 mb-3">
-            <h5 className="text-uppercase butcherman-white">Useful Links</h5>
+            <h5 className="text-uppercase darumadrop-white">Useful Links</h5>
             <ul className="list-unstyled">
               <li><p><Link to="/sign-in" className="links">Account</Link></p></li>
               <li><p><Link to="/cart" className="links">View Cart</Link></p></li>

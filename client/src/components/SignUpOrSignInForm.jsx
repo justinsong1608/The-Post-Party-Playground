@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpOrIn } from '../lib/accountApi';
-import './componentsCSS/AccountForm.css';
+import './componentsCSS/SignUpOrSignInForm.css';
 
-export default function AccountForm({ action, onSignIn }) {
+export default function SignUpOrSignInForm({ action, onSignIn }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -147,6 +147,7 @@ export default function AccountForm({ action, onSignIn }) {
                   required
                   type="number"
                   name="zipCode"
+                  maxLength={5}
                   className="form-control bg-light" />
               </label>
             </div>

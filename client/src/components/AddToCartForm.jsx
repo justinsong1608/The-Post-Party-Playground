@@ -35,15 +35,21 @@ export default function AddToCartForm() {
     }
   }
 
+  const quantityOptions = () => {
+    const options = [];
+    for (let i = 1; i <= 5; i++) {
+      options.push(<option key={i} value={i}>{i}</option>);
+    }
+    return options;
+  };
+
   return (
     <form onSubmit={handleAddProduct}>
       <div className="row mt-3">
-        <div className="col-sm-2">
+        <div className="col-sm-3">
           <div className="input-group mb-3">
             <select className="form-select text-center" onChange={ e => setQuantity(e.target.value)}>
-              <option defaultValue={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
+              {quantityOptions()}
             </select>
           </div>
         </div>

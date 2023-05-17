@@ -38,7 +38,7 @@ export default function Catalog() {
   return (
     <div className='container'>
       <br />
-      <h1 className='butcherman-font'>Catalog</h1>
+      <h1 className='darumadrop-font'>Catalog</h1>
       <br />
       <div className='row'>
         {products?.map((product) => (

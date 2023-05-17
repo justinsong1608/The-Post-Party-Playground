@@ -249,8 +249,8 @@ app.patch('/api/cart', async (req, res, next) => {
     if (!cartId) {
       throw new ClientError(400, 'cartId is a required field!');
     }
-    if (Number(quantity) > 3) {
-      throw new ClientError(400, 'Total quantity in cart cannot be greater than 3!');
+    if (Number(quantity) > 5) {
+      throw new ClientError(400, 'Total quantity in cart cannot be greater than 5!');
     }
     const sql = `
       UPDATE "cart"
@@ -264,7 +264,7 @@ app.patch('/api/cart', async (req, res, next) => {
     if (!updated) {
       throw new ClientError(404, 'cartId is not found!');
     }
-    res.status(202).json(updated);
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }
@@ -414,7 +414,7 @@ app.patch('/api/updateAccount', async (req, res, next) => {
               "zipCode" = $8
         WHERE "customerId" = $9
     `;
-    const params = [username, firstName, lastName, email, address, state, city, zipCode, customerId];
+    const params = [username, firstName, lastName, email, address, state.toUpperCase(), city, zipCode, customerId];
     await db.query(sql, params);
     res.sendStatus(202);
   } catch (err) {

@@ -20,7 +20,7 @@ export default function Header() {
     <>
       <nav className="navbar navbar-expand-xl blue top-overlay">
         <div className="container-fluid">
-          <Link className="navbar-brand butcherman-title mx-auto" to='/' onClick={handleLinkClick}>
+          <Link className="navbar-brand darumadrop-title mx-auto" to='/' onClick={handleLinkClick}>
             <ColorTitle word="The Post Party Playground"/>
           </Link>
           <div className='mx-auto px-3'>
@@ -31,22 +31,22 @@ export default function Header() {
           </button>
           <div id="navbarSupportedContent" className={`collapse navbar-collapse ${isCollapsed ? 'hide' : 'show'}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <h6 className="nav-link dropdown-toggle butcherman-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <FaUserAstronaut size={33} />{user ? user.username : 'Account'}
+              <li className="nav-item dropdown mt-1">
+                <h6 className="nav-link dropdown-toggle darumadrop-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <FaUserAstronaut size={33}/>{user ? user.username : 'Account'}
                 </h6>
                 <ul className="dropdown-menu">
                   {user &&
                   <>
                     <li>
                       <Link to='/orders' className="nav-link text-nowrap">
-                        <span className="d-md-inline ms-1 fw-semibold butcherman-link">Orders</span>
+                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Orders</span>
                       </Link>
                     </li>
                     <li><hr className="dropdown-divider"></hr></li>
                     <li>
                       <Link to='/account-info' className="nav-link text-nowrap">
-                        <span className="d-md-inline ms-1 fw-semibold butcherman-link">Account Info</span>
+                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Account Info</span>
                       </Link>
                     </li>
                     <li><hr className="dropdown-divider"></hr></li>
@@ -55,12 +55,12 @@ export default function Header() {
                   <li>
                     {user &&
                       <Link to='/sign-in' className="nav-link text-nowrap" onClick={() => { handleSignOut(); handleLinkClick(); }}>
-                        <span className="d-md-inline ms-1 fw-semibold butcherman-link-red">Sign Out</span>
+                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link-red">Sign Out</span>
                       </Link>
                     }
                     {!user &&
                       <Link to='/sign-in' className="nav-link text-nowrap" onClick={() => { handleSignOut(); handleLinkClick(); }}>
-                        <span className="d-md-inline ms-1 fw-semibold butcherman-link">Sign In</span>
+                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Sign In</span>
                       </Link>
                     }
                   </li>
@@ -69,13 +69,13 @@ export default function Header() {
               <li className="nav-item">
                 <Link to='/catalog' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <CgGames size={33} />
-                  <span className="d-md-inline ms-1 fw-semibold butcherman-link">Catalog</span>
+                  <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Catalog</span>
                   </Link>
               </li>
               <li className="nav-item">
                 <Link to='/cart' className="nav-link text-nowrap" onClick={handleLinkClick}>
                   <HiOutlineShoppingCart size={33} />
-                  <span className="d-md-inline ms-1 fw-semibold butcherman-link">Your Cart</span>
+                  <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Your Cart</span>
                 </Link>
               </li>
             </ul>

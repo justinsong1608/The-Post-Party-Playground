@@ -19,7 +19,7 @@ export default function SearchResult() {
   return (
     <div className='container'>
       <br />
-      <h1 className='butcherman-font'>Search Results</h1>
+      <h1 className='darumadrop-font'>Search Results</h1>
       <br />
       <div className='row mb-5'>
         {searchResults?.map((product) => (

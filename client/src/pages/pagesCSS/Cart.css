@@ -12,7 +12,7 @@ body {
 }
 
 .my-cart-title {
-  font-family: 'Butcherman', cursive;
+  font-family: 'Darumadrop One', cursive;
   color: red;
 }
 
@@ -32,4 +32,10 @@ body {
 
 .block {
   display: block;
+}
+
+.deny-access {
+  color: red;
+  font-weight: bold;
+  font-size: 1.7rem;
 }

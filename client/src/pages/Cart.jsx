@@ -28,6 +28,11 @@ export default function Cart() {
     readCart();
   }, []);
 
+  async function updateCartTotal() {
+    const cartProducts = await getCart()
+    setProducts(cartProducts);
+  }
+
   function updateCart(cartId) {
     const updatedProducts = products.filter(p => p.cartId !== cartId);
     setProducts(updatedProducts);
@@ -49,7 +54,7 @@ export default function Cart() {
   );
 
   if (error) return (
-    <div className="d-flex justify-content-center align-items-center mb-5" style={{ height: "50vh" }}>
+    <div className="d-flex justify-content-center align-items-center mb-5 deny-access" style={{ height: "50vh" }}>
       <span className="text-center">
         Cannot access Cart: {error.message} <Link to='/sign-in'>Account</Link>
       </span>
@@ -67,7 +72,7 @@ export default function Cart() {
           <div className="col-12 col-md-9">
             {products?.map((product) => (
               <div key={product.cartId} className="mt-3 mb-5">
-                <CartProducts product={product} update={updateCart} />
+                <CartProducts product={product} update={updateCart} updateTotal={updateCartTotal}/>
               </div>
             ))}
             {products.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Your cart is empty!</div>}
@@ -87,7 +92,7 @@ export default function Cart() {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div className="modal fade" id="modal" tabIndex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">

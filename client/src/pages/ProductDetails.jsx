@@ -50,7 +50,7 @@ export default function ProductDetails() {
       <div className="row">
         <div className="col-12">
           <div className="text-left">
-            <Link to='/catalog' className="btn text-danger text-size">
+            <Link to='/catalog' className="btn text-danger text-design">
               <TbArrowBackUp size={30} /> Back to Catalog
             </Link>
           </div>

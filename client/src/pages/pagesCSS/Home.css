@@ -3,7 +3,7 @@ body {
 }
 
 .title {
-  font-family: 'Butcherman', cursive;
+  font-family: 'Darumadrop One', cursive;
   color: #FF0000;
 }
 
@@ -20,20 +20,4 @@ body {
   border-radius: .4rem;
   width: 9rem;
   height: 3rem;
-}
-
-.center {
-  text-align: center;
-}
-
-.newsletter-background {
-  background-color: #E2F3FF;
-  width: 80%;
-  height: 10rem;
-  border-radius: 1rem;
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
 }
