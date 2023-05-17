@@ -1,7 +1,7 @@
+import './componentsCSS/AuthForm.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpOrIn } from '../lib/accountApi';
-import './componentsCSS/AuthForm.css';
 
 export default function AuthForm({ action, onSignIn }) {
   const navigate = useNavigate();

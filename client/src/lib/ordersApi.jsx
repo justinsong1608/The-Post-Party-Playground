@@ -1,4 +1,4 @@
-export default async function getOrders() {
+export async function getOrders() {
   const token = localStorage.getItem('react-jwt');
   if (!token) {
     throw new Error('Please log in or create an account to have access to adding items to your Cart!')

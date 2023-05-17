@@ -1,8 +1,8 @@
-import getAccount from '../lib/checkoutApi'
-import { useEffect, useState } from 'react';
-import { GrFormClose } from 'react-icons/gr';
-import { updateAccountInfo } from '../lib/accountApi';
 import './pagesCSS/AccountInfo.css';
+import { GrFormClose } from 'react-icons/gr';
+import { getAccount } from '../lib/checkoutApi'
+import { useEffect, useState } from 'react';
+import { updateAccountInfo } from '../lib/accountApi';
 
 export default function AccountInfo() {
   const [account, setAccount] = useState({});

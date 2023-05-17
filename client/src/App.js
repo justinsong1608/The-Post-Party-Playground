@@ -2,13 +2,13 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import AppContext from './components/AppContext';
 import useUserAuth from './lib/useUserAuth';
-import Header from './components/Header';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
 import Auth from './pages/Auth';
 import Cart from './pages/Cart.jsx';
 import ProductDeatils from './pages/ProductDetails';
-import Footer from './components/Footer';
 import SearchResult from './pages/SearchResult';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
@@ -27,7 +27,7 @@ function App() {
       <AppContext.Provider value={contextValue}>
         <div className="flex-grow-1">
           <Routes>
-            <Route path='/' element={<Header />}>
+            <Route path='/' element={<NavBar />}>
               <Route index element={<Home />} />
               <Route path='catalog' element={<Catalog />} />
               <Route path='search' element={<SearchResult />} />

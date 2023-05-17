@@ -1,11 +1,8 @@
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import totalPrice from '../lib/checkout';
-import { totalQuantity } from '../lib/checkout';
-import { useNavigate } from 'react-router-dom';
 import CheckoutProducts from '../components/CheckoutProduct';
-import getAccount from '../lib/checkoutApi';
-import { confirmation } from '../lib/checkoutApi';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { totalQuantity, totalPrice } from '../lib/cartTotal';
+import { confirmation, getAccount } from '../lib/checkoutApi';
 
 export default function Checkout() {
   const [account, setAccount] = useState({});

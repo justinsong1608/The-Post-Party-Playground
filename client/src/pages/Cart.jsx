@@ -1,11 +1,9 @@
 import './pagesCSS/Cart.css';
+import CartProducts from '../components/CartProducts';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { removeFromCart } from '../lib/cartApi';
-import totalPrice from '../lib/checkout';
-import { totalQuantity } from '../lib/checkout';
-import { getCart } from '../lib/cartApi';
-import CartProducts from '../components/CartProducts';
+import { removeFromCart, getCart } from '../lib/cartApi';
+import { totalQuantity, totalPrice } from '../lib/cartTotal';
 
 export default function Cart() {
   const [products, setProducts] = useState([]);

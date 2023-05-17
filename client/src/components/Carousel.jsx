@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import './componentsCSS/Carousel.css';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { RiGamepadFill, RiGamepadLine } from 'react-icons/ri';
-import './componentsCSS/Carousel.css';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Carousel() {

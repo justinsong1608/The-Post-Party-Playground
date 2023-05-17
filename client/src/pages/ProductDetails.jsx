@@ -1,12 +1,12 @@
 import './pagesCSS/ProductDetails.css';
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi';
 import { TbArrowBackUp } from 'react-icons/tb';
 import { RiStarSLine } from 'react-icons/ri';
 import { BsFillCheckCircleFill, BsTruck } from 'react-icons/bs';
 import { SlSocialDropbox } from 'react-icons/sl';
 import AddToCartForm from '../components/AddToCartForm';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { productId } = useParams();

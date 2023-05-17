@@ -1,9 +1,9 @@
 import './pagesCSS/Auth.css';
-import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import AppContext from '../components/AppContext';
-import ColorTitle from  '../components/ColorTitle';
+import ColorTitle from '../components/ColorTitle';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Auth({ action }) {
   const navigate = useNavigate();

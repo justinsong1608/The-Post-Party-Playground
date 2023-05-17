@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { GiTabletopPlayers } from 'react-icons/gi'
+import { Link } from 'react-router-dom';
 
 export default function Product({ product }) {
   const { productId, name, price, description, minPlayers, maxPlayers, imageUrl } = product;

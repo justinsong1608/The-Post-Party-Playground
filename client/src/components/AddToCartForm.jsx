@@ -1,6 +1,6 @@
+import addToCart from '../lib/cartApi';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import addToCart from '../lib/cartApi';
 import { useNavigate } from 'react-router-dom';
 import { getCart, updateQuantity } from '../lib/cartApi';
 

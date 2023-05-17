@@ -1,7 +1,7 @@
+import './componentsCSS/SearchBar.css';
 import { BsSearch } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './componentsCSS/SearchBar.css';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
