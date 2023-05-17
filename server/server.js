@@ -25,7 +25,7 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-// Gets the information for catalog page //
+// Gets the information for the catalog page //
 app.get('/api/products', async (req, res, next) => {
   try {
     const sql = `
@@ -45,7 +45,7 @@ app.get('/api/products', async (req, res, next) => {
   }
 });
 
-// Gets the featured products for carousel //
+// Gets the featured products for the carousel on the home page//
 app.get('/api/featuredProducts', async (req, res, next) => {
   try {
     const sql = `
@@ -83,10 +83,11 @@ app.get('/api/products/:productId', async (req, res, next) => {
     `;
     const params = [productId];
     const result = await db.query(sql, params);
-    if (!result.rows[0]) {
+    const [product] = result.rows;
+    if (!product) {
       throw new ClientError(404, `Cannot find the product that matches productId${productId}`);
     }
-    res.status(200).json(result.rows[0]);
+    res.status(200).json(product);
   } catch (err) {
     next(err);
   }
@@ -170,10 +171,10 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   }
 });
 
-/* ⛔ Every route after this middleware requires a token! ⛔ */
+/* ⛔ Every route after this middleware requires an Authorization property in the request header! The value should be a token! ⛔ */
 app.use(authorizationMiddleware);
 
-// Gets the cart products //
+// Gets the user's products that are in the cart //
 app.get('/api/cart', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -194,13 +195,14 @@ app.get('/api/cart', async (req, res, next) => {
     `;
     const params = [customerId];
     const result = await db.query(sql, params);
-    res.status(200).json(result.rows);
+    const cartProducts = result.rows;
+    res.status(200).json(cartProducts);
   } catch (err) {
     next(err);
   }
 });
 
-// Adds a product to their cart //
+// Adds a product to the user's cart //
 app.post('/api/cart', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -222,7 +224,7 @@ app.post('/api/cart', async (req, res, next) => {
   }
 });
 
-// Removes a product from their cart //
+// Removes a product from the user's cart //
 app.delete('/api/cart', async (req, res, next) => {
   try {
     const { cartId } = req.body;
@@ -235,14 +237,14 @@ app.delete('/api/cart', async (req, res, next) => {
         WHERE "cartId" = $1
     `;
     const params = [cartId];
-    const result = await db.query(sql, params);
-    res.status(204).json(result);
+    await db.query(sql, params);
+    res.sendStatus(204);
   } catch (err) {
     next(err);
   }
 });
 
-// Updates the quantity inside of their carts //
+// Updates the quantity of a product that is in the user's cart //
 app.patch('/api/cart', async (req, res, next) => {
   try {
     const { quantity, cartId } = req.body;
@@ -270,7 +272,7 @@ app.patch('/api/cart', async (req, res, next) => {
   }
 });
 
-// Gets account info //
+// Gets the user's account info //
 app.get('/api/account', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -295,6 +297,7 @@ app.get('/api/account', async (req, res, next) => {
   }
 });
 
+// User checks out their cart //
 app.post('/api/checkout', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -332,8 +335,7 @@ app.post('/api/checkout', async (req, res, next) => {
       WHERE "o"."orderId" = $1
     `;
     const params2 = [order.orderId];
-    const result2 = await db.query(sql2, params2);
-    const orderContents = result2.rows;
+    await db.query(sql2, params2);
 
     const sql3 = `
       DELETE
@@ -341,13 +343,14 @@ app.post('/api/checkout', async (req, res, next) => {
         WHERE "customerId" = $1
     `;
     const params3 = [customerId];
-    const result3 = await db.query(sql3, params3);
-    res.json({ order, orderContents, result3 });
+    await db.query(sql3, params3);
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }
 });
 
+// Gets the info of the user's order //
 app.get('/api/orders', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -362,12 +365,14 @@ app.get('/api/orders', async (req, res, next) => {
   `;
     const params = [customerId];
     const result = await db.query(sql, params);
-    res.status(200).json(result.rows);
+    const orders = result.rows;
+    res.status(200).json(orders);
   } catch (err) {
     next(err);
   }
 });
 
+// Gets the contents of the user's order //
 app.get('/api/orderContents', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -389,12 +394,14 @@ app.get('/api/orderContents', async (req, res, next) => {
     `;
     const params = [customerId];
     const result = await db.query(sql, params);
-    res.status(200).json(result.rows);
+    const orderContents = result.rows;
+    res.status(200).json(orderContents);
   } catch (err) {
     next(err);
   }
 });
 
+// User can update their account info //
 app.patch('/api/updateAccount', async (req, res, next) => {
   try {
     const { customerId } = req.user;
@@ -422,6 +429,7 @@ app.patch('/api/updateAccount', async (req, res, next) => {
   }
 });
 
+// Catches the errors //
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

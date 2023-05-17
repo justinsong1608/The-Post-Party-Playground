@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { getCart, updateQuantity } from '../lib/cartApi';
 
 export default function AddToCartForm() {
-  const { productId } = useParams(); // Product details page has the productId as the param //
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState(null);
+  const { productId } = useParams(); // Product details page has the productId as the param //
   const navigate = useNavigate();
 
   async function handleAddProduct(event) {
