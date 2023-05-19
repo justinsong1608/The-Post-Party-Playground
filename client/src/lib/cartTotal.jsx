@@ -1,4 +1,4 @@
-export default function totalPrice(cartProducts) {
+export function totalPrice(cartProducts) {
   if (!cartProducts) {
     return '0.00';
   }

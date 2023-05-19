@@ -1,14 +1,14 @@
-import './componentsCSS/Header.css';
-import { Link, Outlet } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import './componentsCSS/NavBar.css';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { CgGames } from 'react-icons/cg';
+import SearchBar from './SearchBar';
 import ColorTitle from './ColorTitle';
-import { useState, useContext } from 'react';
 import AppContext from './AppContext';
+import { useState, useContext } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
-export default function Header() {
+export default function NavBar() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const { user, handleSignOut } = useContext(AppContext);
 
@@ -31,10 +31,10 @@ export default function Header() {
           </button>
           <div id="navbarSupportedContent" className={`collapse navbar-collapse ${isCollapsed ? 'hide' : 'show'}`}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown mt-1">
-                <h6 className="nav-link dropdown-toggle darumadrop-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <FaUserAstronaut size={33}/>{user ? user.username : 'Account'}
-                </h6>
+              <li className="nav-item dropdown mt-2">
+                <span className="nav-link dropdown-toggle darumadrop-link fw-semibold d-md-inline" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <FaUserAstronaut size={33} /> {user ? user.username : 'Account'}
+                </span>
                 <ul className="dropdown-menu">
                   {user &&
                   <>

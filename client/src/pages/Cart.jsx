@@ -1,11 +1,9 @@
 import './pagesCSS/Cart.css';
+import CartProducts from '../components/CartProducts';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { removeFromCart } from '../lib/cartApi';
-import totalPrice from '../lib/checkout';
-import { totalQuantity } from '../lib/checkout';
-import { getCart } from '../lib/cartApi';
-import CartProducts from '../components/CartProducts';
+import { removeFromCart, getCart } from '../lib/cartApi';
+import { totalQuantity, totalPrice } from '../lib/cartTotal';
 
 export default function Cart() {
   const [products, setProducts] = useState([]);
@@ -33,7 +31,7 @@ export default function Cart() {
     setProducts(cartProducts);
   }
 
-  function updateCart(cartId) {
+  function updateCart(cartId) { // Updates cart after a user removes an item from their cart //
     const updatedProducts = products.filter(p => p.cartId !== cartId);
     setProducts(updatedProducts);
   }

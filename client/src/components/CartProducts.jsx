@@ -1,7 +1,7 @@
 import { GiTabletopPlayers } from 'react-icons/gi'
-import { removeFromCart } from '../lib/cartApi';
 import { useState } from 'react';
 import { updateQuantity } from '../lib/cartApi';
+import { removeFromCart } from '../lib/cartApi';
 
 export default function CartProducts({ product, update, updateTotal }) {
   const { name, price, description, minPlayers, maxPlayers, imageUrl, quantity, cartId } = product;

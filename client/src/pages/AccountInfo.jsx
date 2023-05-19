@@ -1,12 +1,13 @@
-import getAccount from '../lib/checkoutApi'
-import { useEffect, useState } from 'react';
-import { GrFormClose } from 'react-icons/gr';
-import { updateAccountInfo } from '../lib/accountApi';
 import './pagesCSS/AccountInfo.css';
+import { GrFormClose } from 'react-icons/gr';
+import { getAccount } from '../lib/checkoutApi'
+import { useEffect, useState } from 'react';
+import { updateAccountInfo } from '../lib/accountApi';
 
 export default function AccountInfo() {
   const [account, setAccount] = useState({});
   const [edit, setEdit ] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,9 +16,12 @@ export default function AccountInfo() {
         const info = await getAccount();
         setAccount(info);
       } catch (err) {
-        console.error(err);
+        setError(err);
+      } finally {
+        setIsLoading(false);
       }
     }
+    setIsLoading(true);
     accountInfo();
   }, []);
 
@@ -34,6 +38,12 @@ export default function AccountInfo() {
       setEdit(false);
     }
   }
+
+  if (isLoading) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <span className="spinner-border text-secondary" role="status"></span>
+    </div>
+  );
 
   const { firstName, lastName, address, city, state, zipCode, email, username } = account;
   return (

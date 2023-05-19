@@ -1,9 +1,8 @@
 import './pagesCSS/Orders.css';
+import Accordion from '../components/Accordion';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import getOrders from '../lib/ordersApi';
-import { getOrderContents } from '../lib/ordersApi';
-import Accordion from '../components/Accordion';
+import { getOrderContents, getOrders } from '../lib/ordersApi';
 
 export default function Orders() {
   const [orders, setOrders ] = useState([]);

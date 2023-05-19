@@ -1,8 +1,8 @@
 import './componentsCSS/Footer.css';
-import { Link } from 'react-router-dom';
 import { FiTwitter } from 'react-icons/fi';
 import { BsFacebook, BsInstagram, BsLinkedin, BsGithub } from 'react-icons/bs';
 import { FaWarehouse, FaPhoneAlt, FaFax, FaMailBulk } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
