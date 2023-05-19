@@ -8,7 +8,7 @@ export default function SearchResult() {
 
   const searchResults = location.state;
 
-  if (typeof searchResults === 'string') {
+  if (typeof searchResults === 'string') { // Checks if it is string because the error will return a string //
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
         <span className="text-center not-found">{searchResults}</span>

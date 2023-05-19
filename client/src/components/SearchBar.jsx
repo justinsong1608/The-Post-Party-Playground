@@ -44,7 +44,7 @@ export default function SearchBar() {
     await getDropDown(query);
   }
 
-  function handleSelectDropDown(productId) {
+  function handleSelectDropDownItem(productId) {
     setDropDown([]);
     setSearchTerm('');
     navigate(`/details/${productId}`)
@@ -80,7 +80,7 @@ export default function SearchBar() {
               <ul className="list-group">
                 {dropDown.map((result) => (
                   <li className="list-group-item dark" key={result.productId}>
-                    <button className="btn w-100 p-0 left border-0 shadow-none" onClick={() => handleSelectDropDown(result.productId)}>
+                    <button className="btn w-100 p-0 left border-0 shadow-none" onClick={() => handleSelectDropDownItem(result.productId)}>
                       {result.name}
                     </button>
                   </li>

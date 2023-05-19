@@ -6,6 +6,8 @@ import { confirmation, getAccount } from '../lib/checkoutApi';
 
 export default function Checkout() {
   const [account, setAccount] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,9 +19,12 @@ export default function Checkout() {
         const info = await getAccount()
         setAccount(info);
       } catch (err) {
-        console.error(err);
+        setError(err);
+      } finally {
+        setIsLoading(false);
       }
     }
+    setIsLoading(true);
     accountInfo();
   }, []);
 
@@ -35,6 +40,12 @@ export default function Checkout() {
       console.error(err);
     }
   }
+
+  if (isLoading) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <span className="spinner-border text-secondary" role="status"></span>
+    </div>
+  );
 
   const { firstName, lastName, address, city, state, zipCode, email } = account;
   return (
@@ -71,6 +82,7 @@ export default function Checkout() {
           </div>
         </div>
       </div>
+      {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}
     </div>
   );
 }

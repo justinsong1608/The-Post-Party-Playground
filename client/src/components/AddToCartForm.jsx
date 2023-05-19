@@ -1,23 +1,22 @@
-import addToCart from '../lib/cartApi';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { getCart, updateQuantity } from '../lib/cartApi';
+import { addToCart, getCart, updateQuantity } from '../lib/cartApi';
 
 export default function AddToCartForm() {
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState(null);
-  const { productId } = useParams(); // Product details page has the productId as the param //
+  const { productId } = useParams();
   const navigate = useNavigate();
 
   async function handleAddProduct(event) {
     event.preventDefault();
     try {
-      const product = { // Object that I am sending in the body of the request //
+      const product = {
         productId,
         quantity
       };
-      const cartProducts = await getCart(); //
+      const cartProducts = await getCart();
       const findProductInCart = cartProducts.filter(item => item.productId === Number(product.productId));
       if (findProductInCart.length === 0) {
         await addToCart(product);

@@ -31,7 +31,7 @@ export default function Cart() {
     setProducts(cartProducts);
   }
 
-  function updateCart(cartId) {
+  function updateCart(cartId) { // Updates cart after a user removes an item from their cart //
     const updatedProducts = products.filter(p => p.cartId !== cartId);
     setProducts(updatedProducts);
   }
