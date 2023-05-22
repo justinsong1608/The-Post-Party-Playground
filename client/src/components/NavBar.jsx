@@ -60,7 +60,7 @@ export default function NavBar() {
                     }
                     {!user &&
                       <Link to='/sign-in' className="nav-link text-nowrap" onClick={() => { handleSignOut(); handleLinkClick(); }}>
-                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Sign In</span>
+                        <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Sign In/Up</span>
                       </Link>
                     }
                   </li>
