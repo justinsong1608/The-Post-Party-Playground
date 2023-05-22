@@ -172,7 +172,7 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 });
 
 /* ⛔ Every route after this middleware requires an Authorization property in the request header! The value should be a token! ⛔ */
-app.use(authorizationMiddleware);
+app.use('/api/*', authorizationMiddleware);
 
 // Gets the user's products that are in the cart //
 app.get('/api/cart', async (req, res, next) => {
@@ -428,6 +428,8 @@ app.patch('/api/updateAccount', async (req, res, next) => {
     next(err);
   }
 });
+
+app.get('*', (req, res) => res.sendFile(`${reactStaticDir}/index.html`));
 
 // Catches the errors //
 app.use(errorMiddleware);
