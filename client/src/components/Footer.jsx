@@ -2,9 +2,13 @@ import './componentsCSS/Footer.css';
 import { FiTwitter } from 'react-icons/fi';
 import { BsFacebook, BsInstagram, BsLinkedin, BsGithub } from 'react-icons/bs';
 import { FaWarehouse, FaPhoneAlt, FaFax, FaMailBulk } from 'react-icons/fa';
+import AppContext from './AppContext';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
+  const { user } = useContext(AppContext);
+
   return (
     <footer className="page-footer font-small gradient pt-4">
       <div className="container-fluid text-center text-md-left">
@@ -46,7 +50,7 @@ export default function Footer() {
           <div className="col-md-3 mb-md-0 mb-3">
             <h5 className="text-uppercase darumadrop-white">Useful Links</h5>
             <ul className="list-unstyled">
-              <li><p><Link to="/sign-in" className="links">Account</Link></p></li>
+              <li><p><Link to={user ? "account-info" : "/sign-in"} className="links">Account</Link></p></li>
               <li><p><Link to="/cart" className="links">View Cart</Link></p></li>
               <li><p><a href="https://github.com/justinsong1608/The-Post-Party-Playground" className="links">Help</a></p></li>
             </ul>

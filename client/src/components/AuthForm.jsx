@@ -42,7 +42,7 @@ export default function AuthForm({ action, onSignIn }) {
     : '/sign-up';
   const alternateActionText = action === 'sign-up'
     ? 'Sign in instead'
-    : 'Register now';
+    : 'Create Account';
   const submitButtonText = action === 'sign-up'
     ? 'Register'
     : 'Log In';
