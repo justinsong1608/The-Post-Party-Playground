@@ -9,7 +9,7 @@ export default function useUserAuth() {
 
   useEffect(() => {
     const userInfo = localStorage.getItem(userKey);
-    const user = JSON.parse(userInfo);
+    const user = userInfo ? JSON.parse(userInfo) : null;
     setUser(user);
     setIsAuthorizing(false);
   }, []);
@@ -23,6 +23,7 @@ export default function useUserAuth() {
 
   function handleSignOut() {
     localStorage.removeItem(tokenKey);
+    localStorage.removeItem(userKey);
     setUser(undefined);
   }
 
