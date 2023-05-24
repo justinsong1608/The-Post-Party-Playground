@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import jwtDecode from 'jwt-decode';
 
 const tokenKey = 'react-jwt';
+const userKey = 'user';
 
 export default function useUserAuth() {
   const [user, setUser] = useState(null);
   const [isAuthorizing, setIsAuthorizing] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem(tokenKey);
-    const user = token ? jwtDecode(token) : null;
+    const userInfo = localStorage.getItem(userKey);
+    const user = JSON.parse(userInfo);
     setUser(user);
     setIsAuthorizing(false);
   }, []);
@@ -17,6 +17,7 @@ export default function useUserAuth() {
   function handleSignIn(result) {
     const { user, token } = result;
     localStorage.setItem(tokenKey, token);
+    localStorage.setItem(userKey, JSON.stringify(user));
     setUser(user);
   }
 
