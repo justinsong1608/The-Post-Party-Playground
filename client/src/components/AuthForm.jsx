@@ -37,6 +37,20 @@ export default function AuthForm({ action, onSignIn }) {
     }
   }
 
+  async function handleDemoLogin() {
+    const demoFormData = new FormData();
+    demoFormData.append('username', 'demo');
+    demoFormData.append('password', '1234!ABC');
+    try {
+      const result = await signUpOrIn('sign-in', demoFormData);
+      if (result.user && result.token) {
+        onSignIn(result);
+      }
+    } catch (err) {
+      setError(err);
+    }
+  }
+
   const alternateActionTo = action === 'sign-up'
     ? '/sign-in'
     : '/sign-up';
@@ -162,9 +176,14 @@ export default function AuthForm({ action, onSignIn }) {
             {alternateActionText}
           </Link>
         </small>
-        <button type="submit" className="btn btn-primary">
-          {submitButtonText}
-        </button>
+        <div>
+          <button type="button" className="btn btn-secondary me-2" onClick={handleDemoLogin}>
+            Demo
+          </button>
+          <button type="submit" className="btn btn-primary">
+            {submitButtonText}
+          </button>
+        </div>
       </div>
       {error && <div style={{ color: 'red' }}>Error: {error.message}</div>}
     </form>
