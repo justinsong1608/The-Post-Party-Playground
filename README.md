@@ -8,7 +8,7 @@ I built this project as a web developer who loves board games, aiming to showcas
 
 ## Live Demo
 
-Try the application live at [Change](change)
+Try the application live at [https://thepostpartyplayground.azurewebsites.net/](https://thepostpartyplayground.azurewebsites.net/)
 
 ### Technologies Used
 
