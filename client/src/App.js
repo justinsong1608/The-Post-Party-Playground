@@ -18,7 +18,11 @@ import NotFound from './pages/NotFound';
 function App() {
   const { user, isAuthorizing, handleSignIn, handleSignOut } = useUserAuth();
 
-  if (isAuthorizing) return null;
+  if (isAuthorizing) return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      <span className="spinner-border text-secondary" role="status"></span>
+    </div>
+  );
 
   const contextValue = { user, handleSignIn, handleSignOut };
 
