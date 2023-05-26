@@ -39,13 +39,13 @@ export default function NavBar() {
                   {user &&
                   <>
                     <li>
-                      <Link to='/orders' className="nav-link text-nowrap">
+                      <Link to='/orders' className="nav-link text-nowrap" onClick={handleLinkClick}>
                         <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Orders</span>
                       </Link>
                     </li>
                     <li><hr className="dropdown-divider"></hr></li>
                     <li>
-                      <Link to='/account-info' className="nav-link text-nowrap">
+                      <Link to='/account-info' className="nav-link text-nowrap" onClick={handleLinkClick}>
                         <span className="d-md-inline ms-1 fw-semibold darumadrop-link">Account Info</span>
                       </Link>
                     </li>

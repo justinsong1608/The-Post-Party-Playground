@@ -48,7 +48,7 @@ export default function CartProducts({ product, update, updateTotal }) {
               <p className="description card-text text-truncate">{description}</p>
               <h6 className="description card-text"><GiTabletopPlayers size={25} /> Players: {minPlayers} - {maxPlayers}</h6>
               {/* <p>{`Quantity: ${quantity}`}</p> */}
-              <select className="form-select text-center" value={cartQuantity} onChange={updateCartQuantity}>
+              <select className="form-select text-center" style={{cursor: 'pointer'}} value={cartQuantity} onChange={updateCartQuantity}>
                 {quantityValue()}
               </select>
               <div className="mt-3 float-end">
