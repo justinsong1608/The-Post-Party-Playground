@@ -56,7 +56,7 @@ export default function Orders() {
         {orders?.map((order) => (
           <Accordion order={order} key={order.orderId} orderContentsByOrderId={getProductsByOrderId(order.orderId)} />
         ))}
-        {orders.length === 0 && <div className="d-flex justify-content-center align-items-center mb-5 empty-cart">Go Order Some Board Games!</div>}
+        {orders.length === 0 && <div className="d-flex justify-content-center align-items-center text-center mb-5 empty-cart">Go Order Some Board Games!</div>}
       </div>
     </div>
   )
