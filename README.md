@@ -47,7 +47,7 @@ Try the application live at [https://thepostpartyplayground.azurewebsites.net/](
 
 ## Preview
 
-![The Post Party Playground](test)
+![The Post Party Playground](md.assets/demo.gif)
 
 ### System Requirements
 
