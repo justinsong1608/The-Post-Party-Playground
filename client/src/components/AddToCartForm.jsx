@@ -47,7 +47,7 @@ export default function AddToCartForm() {
       <div className="row mt-3">
         <div className="col-sm-3">
           <div className="input-group mb-3">
-            <select className="form-select text-center" onChange={ e => setQuantity(e.target.value)}>
+            <select className="form-select text-center" style={{cursor: 'pointer'}} onChange={ e => setQuantity(e.target.value)}>
               {quantityOptions()}
             </select>
           </div>
