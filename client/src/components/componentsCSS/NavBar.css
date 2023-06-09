@@ -1,0 +1,68 @@
+.blue {
+  background-color: #E2F3FF;
+}
+
+.darumadrop-title {
+  font-size: 1.75rem;
+}
+
+.darumadrop-link {
+  font-family: 'Darumadrop One', cursive;
+  font-size: 1.6rem !important;
+}
+
+.darumadrop-link-red {
+  font-family: 'Darumadrop One', cursive;
+  font-size: 1.6rem !important;
+  color: red;
+}
+
+.darumadrop-1 {
+  font-family: 'Darumadrop One', cursive;
+  color: #FF0000;
+}
+
+.darumadrop-2 {
+  font-family: 'Darumadrop One', cursive;
+  color: #FFA500;
+}
+
+.darumadrop-3 {
+  font-family: 'Darumadrop One', cursive;
+  color: #AAAAAA;
+}
+
+.darumadrop-4 {
+  font-family: 'Darumadrop One', cursive;
+  color: #008000;
+}
+
+.darumadrop-5 {
+  font-family: 'Darumadrop One', cursive;
+  color: #0000FF;
+}
+
+.darumadrop-6 {
+  font-family: 'Darumadrop One', cursive;
+  color: #4B0082;
+}
+
+.darumadrop-7 {
+  font-family: 'Darumadrop One', cursive;
+  color: #EE82EE;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.top-overlay {
+  z-index: 10;
+  background-color: #E2F3FF;
+}

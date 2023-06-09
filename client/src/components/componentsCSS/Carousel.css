@@ -1,0 +1,44 @@
+.backgound-carousel:hover {
+  transform: scale(1.1);
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 4rem;
+  height: 5rem;
+}
+
+.background-carousel {
+  background-color: white;
+  border-radius: 2rem;
+  width: 80%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.red {
+  color: red;
+}
+
+.featured-products {
+  font-family: 'Darumadrop One', cursive;
+  color: #FF0000;
+  text-align: center;
+}
+
+.img-carousel {
+  width: 20rem;
+  height: 20rem;
+  max-width: 100%;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}

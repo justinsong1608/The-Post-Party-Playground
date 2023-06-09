@@ -1,0 +1,47 @@
+body {
+  background-image: url(../../../public/clouds.jpeg);
+}
+
+.darumadrop-link {
+  font-family: 'Darumadrop One', cursive;
+  font-size: .9rem;
+}
+
+.darumadrop-1 {
+  font-family: 'Darumadrop One', cursive;
+  color: #FF0000;
+}
+
+.darumadrop-2 {
+  font-family: 'Darumadrop One', cursive;
+  color: #FFA500;
+}
+
+.darumadrop-3 {
+  font-family: 'Darumadrop One', cursive;
+  color: #AAAAAA;
+}
+
+.darumadrop-4 {
+  font-family: 'Darumadrop One', cursive;
+  color: #008000;
+}
+
+.darumadrop-5 {
+  font-family: 'Darumadrop One', cursive;
+  color: #0000FF;
+}
+
+.darumadrop-6 {
+  font-family: 'Darumadrop One', cursive;
+  color: #4B0082;
+}
+
+.darumadrop-7 {
+  font-family: 'Darumadrop One', cursive;
+  color: #EE82EE;
+}
+
+.blue {
+  background-color: #E2F3FF;
+}

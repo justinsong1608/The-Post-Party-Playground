@@ -1,0 +1,10 @@
+.not-found {
+  color: red;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.darumadrop-font {
+  font-family: 'Darumadrop One', cursive;
+  color: #FF0000;
+}
